@@ -1,0 +1,862 @@
+📦 File HTML completo — Jeans €75, taglie W34/W36/W38
+
+Ecco il file aggiornato, pronto da salvare e usare.
+
+IMPORTANTE: Dopo averlo caricato, vai in Gestione → 🔄 Reset per allineare Firebase alla nuova struttura (3 taglie invece di 8).
+
+Crep à Coer — Magazzino
+👞">
+
+:root {
+--bg:#F5F7FA;--card:#fff;--text:#2C3744;--sub:#5C7A99;--gold:#D4AF7D;
+--navy:#0f3460;--dark:#1a1a2e;--green:#2ECC71;--red:#E74C3C;
+--orange:#F39C12;--purple:#9B59B6;--teal:#1ABC9C;--border:#e8ecf2;--light:#f8f9fb;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+loginOverlay {
+position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;
+background:linear-gradient(135deg,#0d0d0d 0%,var(--dark) 40%,var(--navy) 100%);
+display:flex;align-items:center;justify-content:center;
+transition:opacity .5s,visibility .5s;
+}
+loginOverlay.hidden {visibility:hidden;pointer-events:none}
+.login-box {
+background:rgba(255,255,255,.06);backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);border-radius:20px;
+padding:50px 40px;width:380px;max-width:90vw;text-align:center;
+box-shadow:0 25px 60px rgba(0,0,0,.4);
+}
+.login-box .logo{font-size:48px;margin-bottom:8px}
+.login-box h2{color:#fff;font-size:22px;font-weight:700;margin-bottom:4px}
+.login-box h2 span{color:var(--gold);font-style:italic}
+.login-box .sub{color:rgba(255,255,255,.4);font-size:11px;letter-spacing:2px;text-margin-bottom:30px}
+.login-box input[type=password] {
+width:100%;padding:14px 18px;border:2px solid rgba(255,255,255,.15);
+border-radius:10px;background:rgba(255,255,255,.08);color:#fff;
+font-size:15px;font-family:inherit;text-align:center;letter-spacing:3px;
+transition:all .3s;outline:none;
+}
+.login-box input[type=password]::placeholder{color:rgba(255,255,255,.3);letter-spacing:1px}
+.login-box input[type=password]:focus{background:rgba(255,255,255,.12);box-shadow:0 0 0 4px rgba(212,175,125,.15)}
+.login-box .login-btn {
+width:100%;padding:14px;border:none;border-radius:10px;
+background:linear-gradient(135deg,var(--gold),#c49a6c);color:#fff;
+font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;
+transition:all .3s;letter-spacing:1px;text-
+}
+.login-box .login-btn:hover{box-shadow:0 8px 25px rgba(212,175,125,.35)}
+.login-box .login-btn:active{font-size:12px;margin-top:12px;min-height:18px;
+transition:opacity .3s;font-weight:600;
+}
+.login-hint{color:rgba(255,255,255,.25);font-size:9px;margin-top:20px;letter-spacing:1px}
+
+.hdr {
+background:linear-gradient(135deg,#0d0d0d,var(--dark),var(--navy));
+color:#fff;padding:22px 28px;position:relative;overflow:hidden;
+}
+.hdr::after {
+content:'';position:absolute;top:-40%;right:-8%;width:350px;height:350px;
+background:radial-gradient(circle,rgba(212,175,125,.12),transparent 70%);border-radius:50%;
+}
+.hdr h1{font-size:26px;font-weight:700;letter-spacing:1px;position:relative;z-index:1}
+.hdr h1 span{color:var(--gold);font-style:italic}
+.hdr .sub{font-size:11px;margin-top:3px;letter-spacing:2px;text-position:relative;z-index:1}
+.hdr .logout-btn {
+position:absolute;top:22px;right:28px;z-index:2;background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:6px 12px;
+border-radius:6px;font-size:10px;cursor:pointer;transition:all .2s;font-weight:600;
+}
+.hdr .logout-btn:hover{background:rgba(231,76,60,.3);color:#fff;border-bottom:1px solid var(--border);
+padding:6px 24px;display:flex;align-items:center;justify-content:space-between;
+font-size:11px;color:var(--sub);
+}
+.cdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
+.cdot.on{background:var(--green);box-shadow:0 0 5px rgba(46,204,113,.5);animation:pulse 2s infinite}
+.cdot.off{background:var(--red)}.cdot.wt{background:var(--orange);animation:pulse 1s infinite}
+50%{align-items:center;gap:3px}
+.uav {
+width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+font-size:9px;font-weight:700;color:#fff;border:2px solid #fff;margin-left:-5px;
+box-shadow:0 1px 3px rgba(0,0,0,.12);
+}
+.uav:first-child{margin-left:0}
+
+.tst {
+position:fixed;bottom:16px;left:16px;z-index:9999;padding:8px 14px;border-radius:8px;
+font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px;
+transition:all .35s;pointer-events:none;
+}
+.tst.sh{color:#155724;border:1px solid #C3E6CB}
+.tst.sy{background:#D6EAF8;color:#1B4F72;border:1px solid #AED6F1}
+
+.nav {
+display:flex;background:var(--card);box-shadow:0 2px 6px rgba(0,0,0,.05);
+padding:0 24px;position:sticky;top:0;z-index:100;overflow-x:auto;
+}
+.nt {
+padding:13px 18px;font-size:11px;font-weight:600;cursor:pointer;
+border-bottom:3px solid transparent;color:var(--sub);transition:all .3s;
+white-space:nowrap;user-select:none;
+}
+.nt:hover{color:var(--text);background:var(--light)}
+.nt.a{color:var(--navy);border-bottom-color:var(--gold)}
+.tc{display:none;animation:fadeUp .35s}.tc.a{display:block}
+to{margin:0 auto;padding:20px 24px 50px}
+
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.kc {
+background:var(--card);border-radius:11px;padding:16px 18px;
+box-shadow:0 2px 8px rgba(0,0,0,.04);border-left:4px solid;transition:transform .2s;
+}
+.kc:hover{text-letter-spacing:1.5px;color:var(--sub);margin-bottom:4px;font-weight:600}
+.kv{font-size:28px;font-weight:800;line-height:1}
+.ks{font-size:10px;color:var(--sub);margin-top:3px}
+
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.pc {
+background:var(--card);border-radius:13px;overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,.05);transition:all .3s;
+}
+.pc:hover{box-shadow:0 8px 25px rgba(0,0,0,.1);position:relative;overflow:hidden;
+background:linear-gradient(160deg,#f2f0ed,#e8e4de);
+}
+.pi img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pc:hover .pi img{flex-direction:column;align-items:center;justify-content:center;
+height:100%;gap:8px;color:var(--sub);font-size:11px;
+}
+.pi .ph .em{font-size:48px}
+.pi .ov {
+position:absolute;bottom:0;left:0;right:0;
+background:linear-gradient(transparent,rgba(0,0,0,.85));padding:12px 14px;
+}
+.pi .ov .pn{color:#fff;font-size:11px;font-weight:600}
+.pi .ov .pp{color:var(--gold);font-size:15px;font-weight:700}
+.pinfo{padding:14px 16px}
+.pname{font-size:13px;font-weight:700;margin-bottom:2px}
+.ptype{font-size:9px;color:var(--gold);text-letter-spacing:1.5px;font-weight:600;margin-bottom:10px}
+
+.sg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.sc{display:flex;flex-direction:column;align-items:center;background:var(--light);border-radius:6px;padding:5px 4px;min-width:40px}
+.sn{font-size:10px;font-weight:700}.sq{font-size:9px;color:var(--sub);margin-top:1px}
+.sb{width:100%;height:3px;background:#e1e6ed;border-radius:2px;margin-top:2px;overflow:hidden}
+.sf{height:100%;border-radius:2px;transition:width .8s}
+.sf.h{background:var(--green)}.sf.m{background:var(--orange)}.sf.l{background:var(--red)}
+.ps{display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid #f0f0f0}
+.st{text-align:center}.sv{font-size:15px;font-weight:800}
+.sl{font-size:8px;color:var(--sub);text-letter-spacing:.8px;margin-top:1px}
+
+.tw{background:var(--card);border-radius:11px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow-x:auto;margin-bottom:20px}
+.twh{padding:14px 18px;border-bottom:1px solid #f0f0f0}.twh h3{font-size:13px;font-weight:700}
+table.iv{width:100%;border-collapse:collapse;min-width:500px}
+table.iv thead{background:var(--light)}
+table.iv th{padding:10px 12px;text-align:center;font-size:9px;text-letter-spacing:1px;color:var(--sub);font-weight:600;border-bottom:2px solid var(--border)}
+table.iv th:first-child{text-align:left}
+table.iv td{padding:10px 12px;font-size:12px;border-bottom:1px solid #f5f5f5;text-align:center}
+table.iv td:first-child{text-align:left}
+table.iv tr:hover{background:#fafbfd}
+.cb{display:inline-block;padding:2px 8px;border-radius:14px;font-size:9px;font-weight:600;text-letter-spacing:.4px}
+.cb.gz{background:#FFF3CD;color:#856404}.cb.fn{background:#D4EDDA;color:#155724}
+table.iv .tr{background:var(--light);font-weight:700}
+table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
+.ed {
+background:transparent;border:2px solid transparent;border-radius:5px;
+padding:2px 4px;font-size:14px;font-weight:700;color:var(--text);
+width:48px;text-align:center;transition:all .2s;font-family:inherit;
+}
+.ed:hover{background:var(--light)}
+.ed:focus{outline:none;background:#fff;box-shadow:0 0 0 3px rgba(74,144,226,.12)}
+
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:22px}
+.ac{background:var(--card);border-radius:11px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s}
+.ac:hover{box-shadow:0 5px 16px rgba(0,0,0,.08)}
+.ac .aim{height:160px;overflow:hidden;background:linear-gradient(145deg,#f0ece6,#e4ddd4)}
+.ac .aim img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.ac:hover .aim img{flex-direction:column;align-items:center;justify-content:center;height:100%;gap:4px;color:var(--sub);font-size:10px}
+.ac .aim .ph .em{font-size:36px}
+.ac .abdy{padding:10px 12px;display:flex;align-items:center;justify-content:space-between}
+.ac .an{font-size:11px;font-weight:700}.ac .ap{font-size:13px;font-weight:800;color:var(--gold)}
+.ac .adsc{font-size:9px;color:var(--sub)}
+.ac .aq input{width:44px;padding:4px;border:2px solid var(--border);border-radius:5px;text-align:center;font-size:12px;font-weight:700;font-family:inherit}
+.ac .aq input:focus{outline:none;border-radius:11px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px}
+.ct{font-size:12px;font-weight:700;margin-bottom:12px}
+.bc{display:flex;align-items:flex-end;gap:8px;height:160px;padding:0 4px}
+.bg{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end}
+.br{width:100%;max-width:38px;border-radius:5px 5px 0 0;transition:height 1s;position:relative;cursor:pointer;min-height:3px}
+.br:hover{position:absolute;top:-24px;left:50%;background:var(--text);color:#fff;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600;white-space:nowrap;z-index:10}
+.br:hover .btt{display:block}
+.brl{font-size:10px;font-weight:600;color:var(--sub);margin-top:4px}
+.cleg{display:flex;gap:12px;margin-top:10px;justify-content:center}
+.cli{display:flex;align-items:center;gap:3px;font-size:9px;color:var(--sub)}
+.cld{width:8px;height:8px;border-radius:2px}
+
+.stit{font-size:16px;font-weight:700;margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.stit .bdg{background:var(--gold);color:#fff;font-size:9px;padding:2px 8px;border-radius:14px;font-weight:600}
+.abr{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.bt{padding:7px 16px;border-radius:8px;border:none;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
+.bt:hover{color:#fff}.bt.s{background:var(--green);color:#fff}
+.bt.w{background:var(--orange);color:#fff}.bt.o{background:#fff;color:var(--text);border:2px solid var(--border)}
+.bt.d{background:var(--red);color:#fff}
+.mv{background:var(--card);border-radius:11px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px}
+.mv h3{font-size:13px;font-weight:700;margin-bottom:10px}
+.mr{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.mr label{font-size:9px;color:var(--sub);display:block;margin-bottom:2px}
+.mr select,.mr input[type=number],.mr input[type=password]{padding:7px 10px;border:2px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit}
+.mr input[type=number]{width:60px}.mr input[type=password]{width:140px}
+.ls{background:var(--card);border-radius:11px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.lt{font-size:12px;font-weight:700;margin-bottom:8px}
+.le{display:flex;gap:6px;padding:6px 0;border-bottom:1px solid #f5f5f5;font-size:10px;align-items:center}
+.ltm{color:var(--sub);font-size:9px;min-width:70px}.la{flex:1}
+.lu{font-size:9px;font-weight:600;min-width:55px}
+.lb{padding:1px 5px;border-radius:3px;font-size:8px;font-weight:600;text-color:#1B4F72}.lb.save{background:#E8DAEF;color:#6C3483}
+.lb.add{background:#D4EDDA;color:#155724}.lb.remove{background:#FADBD8;color:#922B21}
+.als{margin-bottom:18px}
+.al{padding:9px 14px;border-radius:8px;font-size:11px;display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.al.w{background:#FFF3CD;color:#856404;border:1px solid #FFEAA7}
+.al.d{background:#FADBD8;color:#922B21;border:1px solid #F5B7B1}
+.al.i{background:#D6EAF8;color:#1B4F72;border:1px solid #AED6F1}
+.al.g{background:#D4EDDA;color:#155724;border:1px solid #C3E6CB}
+
+.pw-box {
+background:var(--card);border-radius:11px;padding:18px;
+box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px;
+border-left:4px solid var(--red);
+}
+.pw-box h3{font-size:13px;font-weight:700;margin-bottom:10px}
+
+.hdr h1{font-size:20px}.mn{padding:12px}
+.kr{grid-template-columns:repeat(2,1fr)}.pgrid,.ag{grid-template-columns:1fr}
+.nt{padding:10px 12px;font-size:10px}.bc{height:120px}
+.cbar{flex-direction:column;gap:4px;text-align:center}
+.cc div[style*="grid-template"]{grid-template-columns:1fr!important}
+.login-box{padding:35px 25px;width:340px}
+.hdr .logout-btn{top:14px;right:16px}
+}
+.tc{display:block!important}}
+
+👞
+
+Crep à Coer
+
+Magazzino Privato
+
+🔓 Accedi
+
+Accesso riservato al team
+
+👞 Crep à Coer — Magazzino
+
+Multi-Utente · Tempo Reale · Firebase
+
+🔒 Esci
+
+Connessione a Firebase...
+
+🛍 Catalogo
+
+👞 Uomo
+
+👠 Donna
+
+👖 Jeans
+
+🎩 Accessori
+
+⚙ Gestione
+
+Totale Articoli
+
+0
+
+In magazzino
+
+Scarpe Uomo
+
+0
+
+Biacco · €180
+
+Scarpe Donna
+
+0
+
+Biacco · €180
+
+Jeans
+
+0
+
+Settebello · €75
+
+Finite
+
+0
+
+Pronte vendita
+
+Grezze
+
+0
+
+Da lavorare
+
+Valore
+
+—
+
+Prezzo vendita
+
+👞 Mocassino Biacco €180,00
+
+👞
+
+Foto non trovata
+
+Mocassino Biacco Uomo
+
+€180,00
+
+Mocassino Biacco Uomo
+
+Pelle nera · Logo CàC argento · Taglie 40-45
+
+0
+
+Grezze
+
+0
+
+Finite
+
+0
+
+Totale
+
+👠
+
+Foto non trovata
+
+Mocassino Biacco Donna
+
+€180,00
+
+Mocassino Biacco Donna
+
+Pelle nera · Logo CàC argento · Taglie 36-42
+
+0
+
+Grezze
+
+0
+
+Finite
+
+0
+
+Totale
+
+👖 Jeans Settebello €75,00
+
+👖
+
+Foto non trovata
+
+Jeans Settebello
+
+€75,00
+
+Jeans Settebello
+
+Denim premium · Taglie W34-W38
+
+0
+
+Grezze
+
+0
+
+Finite
+
+0
+
+Totale
+
+🔖 Linguette Intercambiabili €20-30
+
+🎩 Cinture & Cravatte €65-70
+
+Stock per Taglia
+
+👞 UOMO
+
+👠 DONNA
+
+👖 JEANS
+
+&gt;10
+
+3-10
+
+&lt;3
+
+👞 Mocassino Biacco Uomo — €180 0
+
+📋 Inventario Uomo
+
+Stato404142434445Tot
+
+Finite
+
+0
+🔨 Grezze
+
+98
+TOTALE
+212321
+12111098
+
+👠 Mocassino Biacco Donna — €180 0
+
+📋 Inventario Donna
+
+Stato36373839404142Tot
+
+Finite
+
+0
+🔨 Grezze
+
+17
+TOTALE
+233
+332
+117
+
+👖 Jeans Settebello — €75 0
+
+📋 Inventario Jeans
+
+Stato
+W34W36W38Tot
+
+Finite
+
+0
+🔨 Grezze
+
+0
+TOTALE
+000
+0
+
+🔖 Linguette
+
+🎩 Cinture & Cravatte
+
+⚙ Gestione
+
+📥 CSV
+🔄 Reset
+🖨 Stampa
+
+🔄 Sposta Grezze → Finite
+
+Categoria
+Scarpe Uomo
+Scarpe Donna
+Jeans Settebello
+
+Taglia
+
+Qtà
+
+Conferma
+
+🔒 Cambia Password
+
+Nuova Password
+
+Cambia
+
+Registro Modifiche (sincronizzato)
+
+Nessuna modifica.
+
+⛶
+
+(function() {
+'use strict';
+
+firebase.initializeApp({
+apiKey: "AIzaSyAFJlhIHnB5kNBowqcLSy5slRf5G8Cd_4k",
+authDomain: "magazzino-crepp.firebaseapp.com",
+databaseURL: "https://magazzino-crepp-default-rtdb.europe-west1.firebasedatabase.app",
+projectId: "magazzino-crepp",
+storageBucket: "magazzino-crepp.firebasestorage.app"
+});
+var db = firebase.database();
+
+var DEFAULT_PWD = 'crepcoer2024';
+
+function hashPwd(str) {
+var hash = 0;
+for (var i = 0; i ❌ Minimo 4 caratteri'; return; }
+db.ref('config/passwordHash').set(hashPwd(np)).then(function() {
+fb.innerHTML = ' Password cambiata!';
+document.getElementById('newPwd').value = '';
+pLog('save', uname + ': Password modificata');
+}).catch(function() {
+fb.innerHTML = '❌ Errore — riprova';
+});
+};
+
+if (sessionStorage.getItem('crepAuth') === '1') {
+document.getElementById('loginOverlay').classList.add('hidden');
+} else {
+document.getElementById('loginPwd').focus();
+}
+
+window.imgFail = function(img) {
+var src = img.src;
+var base = src.replace(/\.[^.]+$/, '');
+if (src.indexOf('.png') > -1) { img.src = base + '.webp'; }
+else if (src.indexOf('.webp') > -1) { img.src = base + '.jpg'; }
+else { img.style.display = 'none'; img.nextElementSibling.style.display = 'flex'; }
+};
+
+var isLocal = true, noSync = false;
+var uid = 'u_' + Math.random().toString(36).substr(2, 5);
+var uname = 'Utente ' + uid.substr(2, 3).toUpperCase();
+var ucol = ['#E74C3C','#3498DB','#2ECC71','#9B59B6','#F39C12','#1ABC9C','#E67E22','#E91E63'][Math.floor(Math.random() * 8)];
+
+var DEF = {
+scarpe: {
+uomo: { sz:[40,41,42,43,44,45], finite:{40:0,41:0,42:0,43:0,44:0,45:0}, grezze:{40:21,41:23,42:21,43:12,44:11,45:10}, price:180 },
+donna: { sz:[36,37,38,39,40,41,42], finite:{36:0,37:0,38:0,39:0,40:0,41:0,42:0}, grezze:{36:2,37:3,38:3,39:3,40:3,41:2,42:1}, price:180 },
+jeans: { sz:[34,36,38], finite:{34:0,36:0,38:0}, grezze:{34:0,36:0,38:0}, price:75 }
+},
+ling: [
+{id:'borchie', name:'Linguetta Borchie', price:30, stock:0, img:'img/linguetta-borchie', emoji:'⚫'},
+{id:'cristallo', name:'Linguetta Cristallo', price:30, stock:0, img:'img/linguetta-cristallo', emoji:'💎'},
+{id:'argento', name:'Linguetta Argento', price:20, stock:0, img:'img/linguetta-argento', emoji:'🪙'},
+{id:'stemma', name:'Linguetta Stemma', price:20, stock:0, img:'img/linguetta-stemma', emoji:'⚜ '}
+],
+acc: [
+{id:'cintura_lc', name:'Cintura Le Coer', price:65, stock:0, img:'img/cintura-lecoer', emoji:'🔗'},
+{id:'cravatta', name:'Cravatta Le Coer', price:65, stock:0, img:'img/cravatta-lecoer', emoji:'👔'},
+{id:'cintura_pr', name:'Cintura Provincia', price:70, stock:0, img:'img/cintura-provincia', emoji:'💠'},
+{id:'cintura_cc', name:'Cintura Crep À Coer', price:70, stock:0, img:'img/cintura-crepcoer', emoji:'🔗'},
+{id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-rosa', emoji:'🌸'}
+]
+};
+
+var D = JSON.parse(JSON.stringify(DEF)), logs = [];
+
+var appStarted = false;
+function initApp() {
+if (appStarted) return; appStarted = true;
+loadLoc(); setupFB(); syncIn(); recalc(); renderAcc(); updSz();
+document.getElementById('mc').addEventListener('change', updSz);
+document.querySelectorAll('.ed').forEach(function(i) { i.addEventListener('change', onEd); });
+}
+
+if (sessionStorage.getItem('crepAuth') === '1') { initApp(); }
+
+function setupFB() {
+db.ref('.info/connected').on('value', function(s) {
+if (s.val() === true) {
+isLocal = false;
+document.getElementById('cD').className = 'cdot on';
+document.getElementById('cS').textContent = '🟢 Connesso · Multi-utente · ' + uname;
+regPres(); listenFB();
+} else {
+document.getElementById('cD').className = 'cdot off';
+document.getElementById('cS').textContent = '🔴 Offline — modalità locale';
+}
+});
+}
+
+function regPres() {
+var r = db.ref('presence/' + uid);
+r.set({name:uname, color:ucol, ts:firebase.database.ServerValue.TIMESTAMP});
+r.onDisconnect().remove();
+db.ref('presence').on('value', function(s) {
+var u = s.val() || {}, c = document.getElementById('uO'); c.innerHTML = '';
+Object.keys(u).forEach(function(k) {
+var a = document.createElement('div'); a.className = 'uav';
+a.style.background = u[k].color; a.textContent = u[k].name.substr(7,3);
+a.title = u[k].name; c.appendChild(a);
+});
+var l = document.createElement('span');
+l.style.cssText = 'font-size:9px;color:#5C7A99;margin-left:4px';
+l.textContent = Object.keys(u).length + ' online'; c.appendChild(l);
+});
+}
+
+function mergeJeans(remoteJeans) {
+// Forza la struttura 34/36/38 ignorando eventuali vecchie taglie in Firebase
+var newJeans = { sz:[34,36,38], finite:{34:0,36:0,38:0}, grezze:{34:0,36:0,38:0}, price:75 };
+if (remoteJeans) {
+[34,36,38].forEach(function(s) {
+if (remoteJeans.finite && remoteJeans.finite[s] != null) newJeans.finite[s] = remoteJeans.finite[s];
+if (remoteJeans.grezze && remoteJeans.grezze[s] != null) newJeans.grezze[s] = remoteJeans.grezze[s];
+});
+}
+return newJeans;
+}
+
+function listenFB() {
+db.ref('inventory').on('value', function(s) {
+if (noSync) return; var r = s.val();
+if (r) {
+if (r.scarpe) {
+D.scarpe.uomo = r.scarpe.uomo || D.scarpe.uomo;
+D.scarpe.donna = r.scarpe.donna || D.scarpe.donna;
+D.scarpe.jeans = mergeJeans(r.scarpe.jeans);
+}
+if (r.ling) D.ling = r.ling;
+if (r.acc) {
+D.acc = r.acc;
+var hasRosa = D.acc.some(function(a) { return a.id === 'cintura_rosa'; });
+if (!hasRosa) {
+D.acc.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-rosa', emoji:'🌸'});
+}
+}
+syncIn(); recalc(); renderAcc(); toast('sy','🔄 Aggiornato');
+}
+});
+db.ref('log').orderByChild('ts').limitToLast(40).on('value', function(s) {
+var e = []; s.forEach(function(c) { e.push(c.val()); }); logs = e.reverse(); renderLog();
+});
+}
+
+function pushFB() {
+if (isLocal) return; noSync = true;
+db.ref('inventory').set({scarpe:D.scarpe, ling:D.ling, acc:D.acc})
+.then(function() { noSync = false; }).catch(function() { noSync = false; });
+}
+
+function pLog(t, m) {
+var e = {time:new Date().toISOString(), type:t, message:m, user:uname, color:ucol, ts:Date.now()};
+if (!isLocal) { db.ref('log').push(e); }
+else { logs.unshift(e); if (logs.length > 40) logs = logs.slice(0,40); renderLog(); }
+}
+
+function loadLoc() {
+try {
+var s = localStorage.getItem('crep3');
+if (s) {
+var p = JSON.parse(s);
+if (p.scarpe) {
+D.scarpe.uomo = p.scarpe.uomo || D.scarpe.uomo;
+D.scarpe.donna = p.scarpe.donna || D.scarpe.donna;
+D.scarpe.jeans = mergeJeans(p.scarpe.jeans);
+}
+if (p.ling) D.ling = p.ling;
+if (p.acc) {
+D.acc = p.acc;
+var hasRosa = D.acc.some(function(a) { return a.id === 'cintura_rosa'; });
+if (!hasRosa) {
+D.acc.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-rosa', emoji:'🌸'});
+}
+}
+}
+} catch(e) {}
+}
+function saveLoc() { try { localStorage.setItem('crep3', JSON.stringify({scarpe:D.scarpe, ling:D.ling, acc:D.acc})); } catch(e) {} }
+
+function toast(t, m) { var e = document.getElementById('tst'); e.className = 'tst '+t+' sh'; e.textContent = m; setTimeout(function() { e.classList.remove('sh'); }, 2200); }
+
+window.stab = function(t, el) {
+document.querySelectorAll('.tc').forEach(function(x) { x.classList.remove('a'); });
+document.querySelectorAll('.nt').forEach(function(x) { x.classList.remove('a'); });
+document.getElementById('tab-'+t).classList.add('a'); if (el) el.classList.add('a');
+};
+
+function onEd(e) {
+var i = e.target, v = parseInt(i.value)||0; if (v0 ? '€'+(vS+vA).toLocaleString('it-IT') : '—');
+
+renderAlerts();
+chips('uomo','sc-u'); chips('donna','sc-d'); chips('jeans','sc-j');
+bars();
+}
+function tx(id,v) { var e=document.getElementById(id); if(e) e.textContent=v; }
+
+function renderAlerts() {
+var c=document.getElementById('alC'); c.innerHTML=''; var tF=0,tG=0;
+['uomo','donna','jeans'].forEach(function(ct) { D.scarpe[ct].sz.forEach(function(s) { tF+=(D.scarpe[ct].finite[s]||0); tG+=(D.scarpe[ct].grezze[s]||0); }); });
+if(tF===0&&tG>0) c.innerHTML+='
+Tutti i '+tG+' articoli sono grezzi
+';
+if(tF>0) c.innerHTML+='
+'+tF+' finiti pronti!
+';
+['uomo','donna','jeans'].forEach(function(ct) { D.scarpe[ct].sz.forEach(function(s) {
+var t=(D.scarpe[ct].grezze[s]||0)+(D.scarpe[ct].finite[s]||0);
+if(t>0&&tmx) mx=t; });
+var prefix = cat==='jeans' ? 'W' : '';
+D.scarpe[cat].sz.forEach(function(s) {
+var t=(D.scarpe[cat].grezze[s]||0)+(D.scarpe[cat].finite[s]||0), p=mx>0?(t/mx*100):0;
+var cl=t>10?'h':t>=3?'m':'l';
+var d=document.createElement('div'); d.className='sc';
+d.innerHTML='
+'+prefix+s+'
+
+'+t+'
+
+';
+c.appendChild(d);
+});
+}
+
+function bars() {
+[{cat:'uomo',id:'ch-u',prefix:''},{cat:'donna',id:'ch-d',prefix:''},{cat:'jeans',id:'ch-j',prefix:'W'}].forEach(function(o) {
+var c=document.getElementById(o.id); if(!c) return; c.innerHTML=''; var mx=0;
+D.scarpe[o.cat].sz.forEach(function(s) { var t=(D.scarpe[o.cat].grezze[s]||0)+(D.scarpe[o.cat].finite[s]||0); if(t>mx) mx=t; });
+D.scarpe[o.cat].sz.forEach(function(s) {
+var t=(D.scarpe[o.cat].grezze[s]||0)+(D.scarpe[o.cat].finite[s]||0);
+var p=mx>0?Math.max(5,t/mx*100):5, co=t>10?'#2ECC71':t>=3?'#F39C12':'#E74C3C';
+var g=document.createElement('div'); g.className='bg';
+g.innerHTML='
+
+'+t+'
+
+'+o.prefix+s+'
+';
+c.appendChild(g);
+});
+});
+}
+
+function renderAcc() { accG(D.ling,'lgC'); accG(D.ling,'lgT'); accG(D.acc,'acC'); accG(D.acc,'acT'); }
+function accG(items, cid) {
+var c=document.getElementById(cid); if(!c) return; c.innerHTML='';
+var grp = cid.indexOf('lg')===0 ? 'ling' : 'acc';
+items.forEach(function(item, idx) {
+var imgBase = item.img || 'img/placeholder';
+var emoji = item.emoji || '📦';
+var card = document.createElement('div'); card.className='ac';
+card.innerHTML =
+'
+' +
+'' +
+'
+
+'+emoji+'
+
+'+item.name+'
+
+' +
+'
+' +
+'
+
+' +
+'
+'+item.name+'
+' +
+'
+€'+item.price+',00
+' +
+'
+Stock: '+item.stock+'
+' +
+'
+
+' +
+'' +
+'
+
+';
+c.appendChild(card);
+});
+}
+window.updA = function(inp) {
+var g=inp.dataset.g, i=parseInt(inp.dataset.i), v=parseInt(inp.value)||0;
+if(v❌ Qtà non valida'; return; }
+var av=D.scarpe[cat].grezze[sz]||0;
+if(qty>av) { fb.innerHTML='❌ Solo '+av+' grezze disponibili'; return; }
+D.scarpe[cat].grezze[sz]-=qty; D.scarpe[cat].finite[sz]=(D.scarpe[cat].finite[sz]||0)+qty;
+syncIn(); recalc(); pushFB(); saveLoc();
+var prefix = cat==='jeans' ? 'W' : 'tg.';
+fb.innerHTML=' '+qty+'x '+prefix+sz+' '+cat+' → Finite';
+toast('ok',' Spostamento OK');
+pLog('move', uname+': '+qty+'x '+prefix+sz+' '+cat+' Grezze→Finite');
+};
+
+function renderLog() {
+var c=document.getElementById('logE');
+if(!logs.length) { c.innerHTML='
+Nessuna modifica.
+'; return; }
+c.innerHTML='';
+logs.slice(0,25).forEach(function(e) {
+var d=document.createElement('div'); d.className='le';
+var t=e.time?new Date(e.time).toLocaleString('it-IT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+d.innerHTML=''+t+''+(e.user||'—')+''+((e.type||'').toUpperCase())+''+e.message+'';
+c.appendChild(d);
+});
+}
+
+window.expCSV = function() {
+var l=['Categoria,Prodotto,Stato,Taglia,Qtà,Prezzo'];
+['uomo','donna'].forEach(function(c) { ['finite','grezze'].forEach(function(s) {
+D.scarpe[c].sz.forEach(function(z) { l.push('Scarpe,Mocassino Biacco '+c+','+s+','+z+','+(D.scarpe[c][s][z]||0)+',180'); });
+}); });
+['finite','grezze'].forEach(function(s) {
+D.scarpe.jeans.sz.forEach(function(z) { l.push('Jeans,Settebello,'+s+',W'+z+','+(D.scarpe.jeans[s][z]||0)+',75'); });
+});
+D.ling.forEach(function(x) { l.push('Linguette,'+x.name+',stock,—,'+x.stock+','+x.price); });
+D.acc.forEach(function(x) { l.push('Accessori,'+x.name+',stock,—,'+x.stock+','+x.price); });
+var b=new Blob([l.join('\n')],{type:'text/csv;charset=utf-8;'}), a=document.createElement('a');
+a.href=URL.createObjectURL(b); a.download='magazzinocrep'+new Date().toISOString().slice(0,10)+'.csv';
+document.body.appendChild(a); a.click(); document.body.removeChild(a);
+pLog('add', uname+': Export CSV');
+};
+window.rstAll = function() {
+if(!confirm('Resettare ai valori originali?')) return;
+D=JSON.parse(JSON.stringify(DEF)); syncIn(); recalc(); renderAcc(); pushFB(); saveLoc();
+toast('ok','🔄 Reset'); pLog('remove', uname+': Reset');
+};
+
+document.getElementById('fs').addEventListener('click', function() {
+if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function(){});
+else document.exitFullscreen();
+});
+document.addEventListener('fullscreenchange', function() { document.getElementById('fs').textContent=document.fullscreenElement?'✕':'⛶'; });
+window.addEventListener('beforeunload', function() { saveLoc(); });
+})();
+
+Riepilogo modifiche applicate
+
+Elemento | Valore aggiornato
+---------- | -------------------
+💰 Prezzo Jeans | €75 (era €120)
+📏 Taglie Jeans | W34, W36, W38 (erano 8 taglie W28-W36)
+🧮 Calcolo valore | Jeans × 75
+KPI Catalogo | "Settebello · €75"
+🏷 Card prodotto | "€75,00 · Taglie W34-W38"
+📋 Tabella inventario | 3 colonne taglie
+📥 Export CSV | Prezzo 75 per jeans
+🛡 Merge intelligente | mergeJeans() pulisce automaticamente vecchie taglie W28-W33 da Firebase
+
+Passi dopo il salvataggio
+
+Salva il file sostituendo quello vecchio
+Apri il file nel browser e fai login
+⚙ Vai in Gestione → 🔄 Reset (conferma col popup)
+Ora Firebase ha la struttura pulita con sole W34/W36/W38
+
+KEY INSIGHT: La funzione mergeJeans() che ho aggiunto protegge da dati sporchi in Firebase: se qualcuno ha ancora vecchi valori salvati con taglie W28-W33, vengono ignorati automaticamente e sostituiti con la nuova struttura. Nessun rischio di rottura.
+
+CONTINUA ESPLORANDO
+
+1 │ Vuoi aggiungere un secondo modello di jeans (es. Jeans Classic) con prezzo/taglie diversi da Settebello? → Struttura multi-modello jeans
+
+2 │ Serve un campo "venduti" per tracciare quanti pezzi escono dal magazzino con storico settimanale/mensile? → Sistema di movimenti in uscita con timestamp
+
+3 │ Altro? (inserire foto reali tramite Firebase Storage, modificare layout mobile, aggiungere ricerca/filtri per prodotto)
+
+⚡ Risposta rapida: Digita 1, 2 o 3 │ Oppure chiedi altro
