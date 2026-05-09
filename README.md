@@ -1,2 +1,2 @@
 # Magazzino
-Magazzino Crep à Cœur
+Magazzino Crep à Coer
