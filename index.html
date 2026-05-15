@@ -123,7 +123,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .kc:hover{transform:translateY(-2px)}
 .kc.bl{border-color:#4A90E2}.kc.gd{border-color:var(--gold)}.kc.gn{border-color:var(--green)}
 .kc.rd{border-color:var(--red)}.kc.pr{border-color:var(--purple)}.kc.tl{border-color:var(--teal)}
-.kc.bj{border-color:#34495E}
+.kc.bj{border-color:#34495E}.kc.cm{border-color:#16A085}
 .kl{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--sub);margin-bottom:4px;font-weight:600}
 .kv{font-size:28px;font-weight:800;line-height:1}
 .ks{font-size:10px;color:var(--sub);margin-top:3px}
@@ -235,6 +235,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 .lb{padding:1px 5px;border-radius:3px;font-size:8px;font-weight:600;text-transform:uppercase}
 .lb.move{background:#D6EAF8;color:#1B4F72}.lb.save{background:#E8DAEF;color:#6C3483}
 .lb.add{background:#D4EDDA;color:#155724}.lb.remove{background:#FADBD8;color:#922B21}
+.lb.note{background:#FFF3CD;color:#856404}
 .als{margin-bottom:18px}
 .al{padding:9px 14px;border-radius:8px;font-size:11px;display:flex;align-items:center;gap:6px;margin-bottom:6px}
 .al.w{background:#FFF3CD;color:#856404;border:1px solid #FFEAA7}
@@ -248,6 +249,24 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   border-left:4px solid var(--red);
 }
 .pw-box h3{font-size:13px;font-weight:700;margin-bottom:10px}
+
+/* ⭐ NOTE BOX */
+.note-box {
+  background:linear-gradient(135deg,#FFFDF7,#FFF8E7);
+  border-radius:11px;padding:16px 18px;margin-bottom:18px;
+  border-left:4px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+.note-box .nbh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.note-box .nbh h3{font-size:12px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:6px}
+.note-box .nbh .nb-status{font-size:9px;color:var(--sub);font-style:italic;font-weight:600}
+.note-box .nb-meta{font-size:9px;color:var(--sub);margin-top:6px;font-style:italic}
+.note-box textarea {
+  width:100%;min-height:80px;padding:10px 12px;border:2px solid rgba(212,175,125,.2);
+  border-radius:8px;background:rgba(255,255,255,.7);font-family:inherit;font-size:12px;
+  color:var(--text);resize:vertical;transition:all .25s;outline:none;line-height:1.5;
+}
+.note-box textarea:focus{border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(212,175,125,.15)}
+.note-box textarea::placeholder{color:#b8a888;font-style:italic}
 
 @media(max-width:768px){
   .hdr{padding:14px 16px}.hdr h1{font-size:20px}.mn{padding:12px}
@@ -292,6 +311,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   <div class="nt" onclick="stab('uomo',this)">👞 Uomo</div>
   <div class="nt" onclick="stab('donna',this)">👠 Donna</div>
   <div class="nt" onclick="stab('jeans',this)">👖 Jeans</div>
+  <div class="nt" onclick="stab('camicia',this)">👔 Camicia</div>
   <div class="nt" onclick="stab('acc',this)">🎩 Accessori</div>
   <div class="nt" onclick="stab('gest',this)">⚙️ Gestione</div>
 </div>
@@ -307,11 +327,22 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     <div class="kc gd"><div class="kl">Scarpe Uomo</div><div class="kv" id="k-u">0</div><div class="ks">Biacco · €180</div></div>
     <div class="kc pr"><div class="kl">Scarpe Donna</div><div class="kv" id="k-d">0</div><div class="ks">Biacco · €180</div></div>
     <div class="kc bj"><div class="kl">Jeans</div><div class="kv" id="k-j">0</div><div class="ks">Settebello · €75</div></div>
+    <div class="kc cm"><div class="kl">Camicia</div><div class="kv" id="k-c">0</div><div class="ks">Bianca · €60</div></div>
     <div class="kc gn"><div class="kl">Finite</div><div class="kv" id="k-fn">0</div><div class="ks">Pronte vendita</div></div>
     <div class="kc rd"><div class="kl">Grezze</div><div class="kv" id="k-gz">0</div><div class="ks">Da lavorare</div></div>
     <div class="kc tl"><div class="kl">Valore</div><div class="kv" id="k-vl">—</div><div class="ks">Prezzo vendita</div></div>
   </div>
   <div class="als" id="alC"></div>
+
+  <!-- Note Catalogo -->
+  <div class="note-box">
+    <div class="nbh">
+      <h3>📝 Note Generali Catalogo</h3>
+      <span class="nb-status" id="nb-cat-st"></span>
+    </div>
+    <textarea id="nb-cat" data-tab="cat" placeholder="Aggiungi qui le tue note generali sul catalogo... (salvate automaticamente, condivise con il team)"></textarea>
+    <div class="nb-meta" id="nb-cat-meta"></div>
+  </div>
 
   <div class="stit">👞 Mocassino Biacco <span class="bdg">€180,00</span></div>
   <div class="pgrid">
@@ -349,16 +380,34 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   <div class="pgrid">
     <div class="pc"><div class="pi">
       <img src="img/jeans-settebello.png" alt="Jeans Settebello" onerror="imgFail(this)">
-      <div class="ph" style="display:none"><div class="em">👖</div><div>Foto non trovata</div></div>
+      <div class="ph" style="display:none"><div class="em">👖</div><div>Jeans Settebello</div></div>
       <div class="ov"><div class="pn">Jeans Settebello</div><div class="pp">€75,00</div></div>
     </div><div class="pinfo">
       <div class="pname">Jeans Settebello</div>
-      <div class="ptype">Denim premium · Taglie W34-W38</div>
+      <div class="ptype">Denim premium · Taglie W34-W40</div>
       <div class="sg" id="sc-j"></div>
       <div class="ps">
         <div class="st"><div class="sv" id="cj-g">0</div><div class="sl">Grezze</div></div>
         <div class="st"><div class="sv" id="cj-f">0</div><div class="sl">Finite</div></div>
         <div class="st"><div class="sv" id="cj-t">0</div><div class="sl">Totale</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="stit">👔 Camicia Bianca <span class="bdg">€60,00</span></div>
+  <div class="pgrid">
+    <div class="pc"><div class="pi">
+      <img src="img/camicia-bianca.png" alt="Camicia Bianca" onerror="imgFail(this)">
+      <div class="ph" style="display:none"><div class="em">👔</div><div>Camicia Bianca</div></div>
+      <div class="ov"><div class="pn">Camicia Bianca</div><div class="pp">€60,00</div></div>
+    </div><div class="pinfo">
+      <div class="pname">Camicia Bianca</div>
+      <div class="ptype">Cotone premium · Taglie 39-43</div>
+      <div class="sg" id="sc-c"></div>
+      <div class="ps">
+        <div class="st"><div class="sv" id="cc-g">0</div><div class="sl">Grezze</div></div>
+        <div class="st"><div class="sv" id="cc-f">0</div><div class="sl">Finite</div></div>
+        <div class="st"><div class="sv" id="cc-t">0</div><div class="sl">Totale</div></div>
       </div>
     </div></div>
   </div>
@@ -370,10 +419,11 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 
   <div class="cc">
     <div class="ct">📊 Stock per Taglia</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
       <div><div style="text-align:center;font-size:10px;font-weight:600;color:var(--navy);margin-bottom:6px">👞 UOMO</div><div class="bc" id="ch-u"></div></div>
       <div><div style="text-align:center;font-size:10px;font-weight:600;color:var(--purple);margin-bottom:6px">👠 DONNA</div><div class="bc" id="ch-d"></div></div>
       <div><div style="text-align:center;font-size:10px;font-weight:600;color:#34495E;margin-bottom:6px">👖 JEANS</div><div class="bc" id="ch-j"></div></div>
+      <div><div style="text-align:center;font-size:10px;font-weight:600;color:#16A085;margin-bottom:6px">👔 CAMICIA</div><div class="bc" id="ch-c"></div></div>
     </div>
     <div class="cleg">
       <div class="cli"><div class="cld" style="background:var(--green)"></div>&gt;10</div>
@@ -386,6 +436,11 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 <!-- ══════ TAB: UOMO ══════ -->
 <div class="tc" id="tab-uomo">
   <div class="stit">👞 Mocassino Biacco Uomo — €180 <span class="bdg" id="bu">0</span></div>
+  <div class="note-box">
+    <div class="nbh"><h3>📝 Note — Scarpe Uomo</h3><span class="nb-status" id="nb-uomo-st"></span></div>
+    <textarea id="nb-uomo" data-tab="uomo" placeholder="Note specifiche su Scarpe Uomo (riassortimenti, problemi qualità, riservato cliente, ecc.)..."></textarea>
+    <div class="nb-meta" id="nb-uomo-meta"></div>
+  </div>
   <div class="tw"><div class="twh"><h3>📋 Inventario Uomo</h3></div>
     <table class="iv"><thead><tr><th style="text-align:left">Stato</th><th>40</th><th>41</th><th>42</th><th>43</th><th>44</th><th>45</th><th>Tot</th></tr></thead>
     <tbody>
@@ -415,6 +470,11 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 <!-- ══════ TAB: DONNA ══════ -->
 <div class="tc" id="tab-donna">
   <div class="stit">👠 Mocassino Biacco Donna — €180 <span class="bdg" id="bd">0</span></div>
+  <div class="note-box">
+    <div class="nbh"><h3>📝 Note — Scarpe Donna</h3><span class="nb-status" id="nb-donna-st"></span></div>
+    <textarea id="nb-donna" data-tab="donna" placeholder="Note specifiche su Scarpe Donna..."></textarea>
+    <div class="nb-meta" id="nb-donna-meta"></div>
+  </div>
   <div class="tw"><div class="twh"><h3>📋 Inventario Donna</h3></div>
     <table class="iv"><thead><tr><th style="text-align:left">Stato</th><th>36</th><th>37</th><th>38</th><th>39</th><th>40</th><th>41</th><th>42</th><th>Tot</th></tr></thead>
     <tbody>
@@ -444,34 +504,79 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   </div>
 </div>
 
-<!-- ══════ TAB: JEANS ══════ -->
+<!-- ══════ TAB: JEANS (con W40 nuova) ══════ -->
 <div class="tc" id="tab-jeans">
   <div class="stit">👖 Jeans Settebello — €75 <span class="bdg" id="bj">0</span></div>
+  <div class="note-box">
+    <div class="nbh"><h3>📝 Note — Jeans Settebello</h3><span class="nb-status" id="nb-jeans-st"></span></div>
+    <textarea id="nb-jeans" data-tab="jeans" placeholder="Note specifiche sui Jeans (lavaggi, taglie esaurite, ecc.)..."></textarea>
+    <div class="nb-meta" id="nb-jeans-meta"></div>
+  </div>
   <div class="tw"><div class="twh"><h3>📋 Inventario Jeans</h3></div>
     <table class="iv"><thead><tr>
       <th style="text-align:left">Stato</th>
-      <th>W34</th><th>W36</th><th>W38</th><th>Tot</th>
+      <th>W34</th><th>W36</th><th>W38</th><th>W40</th><th>Tot</th>
     </tr></thead>
     <tbody>
       <tr><td><span class="cb fn">✅ Finite</span></td>
         <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="finite" data-z="34"></td>
         <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="finite" data-z="36"></td>
         <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="finite" data-z="38"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="finite" data-z="40"></td>
         <td id="tj-f">0</td></tr>
       <tr><td><span class="cb gz">🔨 Grezze</span></td>
         <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="grezze" data-z="34"></td>
         <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="grezze" data-z="36"></td>
         <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="grezze" data-z="38"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="jeans" data-s="grezze" data-z="40"></td>
         <td id="tj-g">0</td></tr>
       <tr class="tr"><td><strong>TOTALE</strong></td>
-        <td id="tj-34">0</td><td id="tj-36">0</td><td id="tj-38">0</td>
+        <td id="tj-34">0</td><td id="tj-36">0</td><td id="tj-38">0</td><td id="tj-40">0</td>
         <td id="tj-a">0</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- ══════ TAB: CAMICIA (NUOVO) ══════ -->
+<div class="tc" id="tab-camicia">
+  <div class="stit">👔 Camicia Bianca — €60 <span class="bdg" id="bc">0</span></div>
+  <div class="note-box">
+    <div class="nbh"><h3>📝 Note — Camicia Bianca</h3><span class="nb-status" id="nb-camicia-st"></span></div>
+    <textarea id="nb-camicia" data-tab="camicia" placeholder="Note specifiche sulla Camicia Bianca (collo, manica, lavaggi, ecc.)..."></textarea>
+    <div class="nb-meta" id="nb-camicia-meta"></div>
+  </div>
+  <div class="tw"><div class="twh"><h3>📋 Inventario Camicia</h3></div>
+    <table class="iv"><thead><tr>
+      <th style="text-align:left">Stato</th>
+      <th>39</th><th>40</th><th>42</th><th>43</th><th>Tot</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="cb fn">✅ Finite</span></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="finite" data-z="39"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="finite" data-z="40"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="finite" data-z="42"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="finite" data-z="43"></td>
+        <td id="tc-f">0</td></tr>
+      <tr><td><span class="cb gz">🔨 Grezze</span></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="grezze" data-z="39"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="grezze" data-z="40"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="grezze" data-z="42"></td>
+        <td><input class="ed" type="number" min="0" value="0" data-c="camicia" data-s="grezze" data-z="43"></td>
+        <td id="tc-g">0</td></tr>
+      <tr class="tr"><td><strong>TOTALE</strong></td>
+        <td id="tc-39">0</td><td id="tc-40">0</td><td id="tc-42">0</td><td id="tc-43">0</td>
+        <td id="tc-a">0</td></tr>
     </tbody></table>
   </div>
 </div>
 
 <!-- ══════ TAB: ACCESSORI ══════ -->
 <div class="tc" id="tab-acc">
+  <div class="note-box">
+    <div class="nbh"><h3>📝 Note — Accessori</h3><span class="nb-status" id="nb-acc-st"></span></div>
+    <textarea id="nb-acc" data-tab="acc" placeholder="Note specifiche su Linguette, Cinture, Cravatte..."></textarea>
+    <div class="nb-meta" id="nb-acc-meta"></div>
+  </div>
   <div class="stit">🔖 Linguette</div><div class="ag" id="lgT"></div>
   <div class="stit">🎩 Cinture & Cravatte</div><div class="ag" id="acT"></div>
 </div>
@@ -479,6 +584,11 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 <!-- ══════ TAB: GESTIONE ══════ -->
 <div class="tc" id="tab-gest">
   <div class="stit">⚙️ Gestione</div>
+  <div class="note-box">
+    <div class="nbh"><h3>📝 Note — Gestione</h3><span class="nb-status" id="nb-gest-st"></span></div>
+    <textarea id="nb-gest" data-tab="gest" placeholder="Note interne, promemoria, attività in sospeso..."></textarea>
+    <div class="nb-meta" id="nb-gest-meta"></div>
+  </div>
   <div class="abr">
     <button class="bt s" onclick="expCSV()">📥 CSV</button>
     <button class="bt w" onclick="rstAll()">🔄 Reset</button>
@@ -491,6 +601,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
         <option value="uomo">Scarpe Uomo</option>
         <option value="donna">Scarpe Donna</option>
         <option value="jeans">Jeans Settebello</option>
+        <option value="camicia">Camicia Bianca</option>
       </select></div>
       <div><label>Taglia</label><select id="ms"></select></div>
       <div><label>Qtà</label><input id="mq" type="number" min="1" value="1"></div>
@@ -547,18 +658,13 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     var pwd = document.getElementById('loginPwd').value.trim();
     var err = document.getElementById('loginErr');
     if (!pwd) { err.textContent = '⚠️ Inserisci la password'; return; }
-
     db.ref('config/passwordHash').once('value').then(function(snap) {
       var stored = snap.val();
-      if (!stored) {
-        db.ref('config/passwordHash').set(hashPwd(DEFAULT_PWD));
-        stored = hashPwd(DEFAULT_PWD);
-      }
+      if (!stored) { db.ref('config/passwordHash').set(hashPwd(DEFAULT_PWD)); stored = hashPwd(DEFAULT_PWD); }
       if (hashPwd(pwd) === stored) {
         sessionStorage.setItem('crepAuth', '1');
         document.getElementById('loginOverlay').classList.add('hidden');
-        err.textContent = '';
-        initApp();
+        err.textContent = ''; initApp();
       } else {
         err.textContent = '❌ Password errata';
         document.getElementById('loginPwd').value = '';
@@ -567,11 +673,8 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     }).catch(function() {
       if (hashPwd(pwd) === hashPwd(DEFAULT_PWD)) {
         sessionStorage.setItem('crepAuth', '1');
-        document.getElementById('loginOverlay').classList.add('hidden');
-        initApp();
-      } else {
-        err.textContent = '❌ Password errata (offline)';
-      }
+        document.getElementById('loginOverlay').classList.add('hidden'); initApp();
+      } else { err.textContent = '❌ Password errata (offline)'; }
     });
   };
 
@@ -590,16 +693,12 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       fb.innerHTML = '<span style="color:#2ECC71">✅ Password cambiata!</span>';
       document.getElementById('newPwd').value = '';
       pLog('save', uname + ': Password modificata');
-    }).catch(function() {
-      fb.innerHTML = '<span style="color:#E74C3C">❌ Errore — riprova</span>';
-    });
+    }).catch(function() { fb.innerHTML = '<span style="color:#E74C3C">❌ Errore — riprova</span>'; });
   };
 
   if (sessionStorage.getItem('crepAuth') === '1') {
     document.getElementById('loginOverlay').classList.add('hidden');
-  } else {
-    document.getElementById('loginPwd').focus();
-  }
+  } else { document.getElementById('loginPwd').focus(); }
 
   window.imgFail = function(img) {
     var src = img.src;
@@ -614,33 +713,39 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   var uname = 'Utente ' + uid.substr(2, 3).toUpperCase();
   var ucol = ['#E74C3C','#3498DB','#2ECC71','#9B59B6','#F39C12','#1ABC9C','#E67E22','#E91E63'][Math.floor(Math.random() * 8)];
 
+  // ⭐ DEFAULT con jeans W40 + camicia
   var DEF = {
     scarpe: {
-      uomo:  { sz:[40,41,42,43,44,45], finite:{40:0,41:0,42:0,43:0,44:0,45:0}, grezze:{40:21,41:23,42:21,43:12,44:11,45:10}, price:180 },
-      donna: { sz:[36,37,38,39,40,41,42], finite:{36:0,37:0,38:0,39:0,40:0,41:0,42:0}, grezze:{36:2,37:3,38:3,39:3,40:3,41:2,42:1}, price:180 },
-      jeans: { sz:[34,36,38], finite:{34:0,36:0,38:0}, grezze:{34:0,36:0,38:0}, price:75 }
+      uomo:    { sz:[40,41,42,43,44,45], finite:{40:0,41:0,42:0,43:0,44:0,45:0}, grezze:{40:21,41:23,42:21,43:12,44:11,45:10}, price:180 },
+      donna:   { sz:[36,37,38,39,40,41,42], finite:{36:0,37:0,38:0,39:0,40:0,41:0,42:0}, grezze:{36:2,37:3,38:3,39:3,40:3,41:2,42:1}, price:180 },
+      jeans:   { sz:[34,36,38,40], finite:{34:0,36:0,38:0,40:0}, grezze:{34:0,36:0,38:0,40:0}, price:75 },
+      camicia: { sz:[39,40,42,43], finite:{39:0,40:0,42:0,43:0}, grezze:{39:0,40:0,42:0,43:0}, price:60 }
     },
     ling: [
-      {id:'borchie',   name:'Linguetta Borchie',  price:30, stock:0, img:'img/linguetta-borchie',   emoji:'⚫'},
+      {id:'borchie',   name:'Linguetta Borchie',   price:30, stock:0, img:'img/linguetta-borchie',   emoji:'⚫'},
       {id:'cristallo', name:'Linguetta Cristallo', price:30, stock:0, img:'img/linguetta-cristallo', emoji:'💎'},
       {id:'argento',   name:'Linguetta Argento',   price:20, stock:0, img:'img/linguetta-argento',   emoji:'🪙'},
       {id:'stemma',    name:'Linguetta Stemma',    price:20, stock:0, img:'img/linguetta-stemma',    emoji:'⚜️'}
     ],
     acc: [
       {id:'cintura_lc',   name:'Cintura Le Coer',     price:65, stock:0, img:'img/cintura-lecoer',    emoji:'🔗'},
-      {id:'cravatta',     name:'Cravatta Le Coer',    price:65, stock:0, img:'img/cravatta-lecoer',   emoji:'👔'},
+      {id:'cravatta',     name:'Cravatta Le Coer',    price:65, stock:0, img:'img/cintura-lecoer',    emoji:'👔'},
       {id:'cintura_pr',   name:'Cintura Provincia',   price:70, stock:0, img:'img/cintura-provincia', emoji:'💠'},
       {id:'cintura_cc',   name:'Cintura Crep À Coer', price:70, stock:0, img:'img/cintura-crepcoer',  emoji:'🔗'},
-      {id:'cintura_rosa', name:'Cintura Rosa',        price:70, stock:0, img:'img/cintura-rosa',      emoji:'🌸'}
+      {id:'cintura_rosa', name:'Cintura Rosa',        price:70, stock:0, img:'img/cintura-provincia', emoji:'🌸'}
     ]
   };
 
   var D = JSON.parse(JSON.stringify(DEF)), logs = [];
+  var notes = { cat:'', uomo:'', donna:'', jeans:'', camicia:'', acc:'', gest:'' };
+  var notesMeta = {};
+  var noteSaveTimer = {};
+  var noteIsRemoteUpdate = {};
 
   var appStarted = false;
   function initApp() {
     if (appStarted) return; appStarted = true;
-    loadLoc(); setupFB(); syncIn(); recalc(); renderAcc(); updSz();
+    loadLoc(); setupFB(); syncIn(); recalc(); renderAcc(); updSz(); setupNotes();
     document.getElementById('mc').addEventListener('change', updSz);
     document.querySelectorAll('.ed').forEach(function(i) { i.addEventListener('change', onEd); });
   }
@@ -653,7 +758,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
         isLocal = false;
         document.getElementById('cD').className = 'cdot on';
         document.getElementById('cS').textContent = '🟢 Connesso · Multi-utente · ' + uname;
-        regPres(); listenFB();
+        regPres(); listenFB(); listenNotes();
       } else {
         document.getElementById('cD').className = 'cdot off';
         document.getElementById('cS').textContent = '🔴 Offline — modalità locale';
@@ -678,16 +783,29 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     });
   }
 
-  function mergeJeans(remoteJeans) {
-    // Forza la struttura 34/36/38 ignorando eventuali vecchie taglie in Firebase
-    var newJeans = { sz:[34,36,38], finite:{34:0,36:0,38:0}, grezze:{34:0,36:0,38:0}, price:75 };
-    if (remoteJeans) {
-      [34,36,38].forEach(function(s) {
-        if (remoteJeans.finite && remoteJeans.finite[s] != null) newJeans.finite[s] = remoteJeans.finite[s];
-        if (remoteJeans.grezze && remoteJeans.grezze[s] != null) newJeans.grezze[s] = remoteJeans.grezze[s];
+  // ⭐ Merge che preserva struttura corretta anche se Firebase ha vecchie taglie
+  function mergeCategory(remote, defaultCat) {
+    var newCat = JSON.parse(JSON.stringify(defaultCat));
+    if (remote) {
+      defaultCat.sz.forEach(function(s) {
+        if (remote.finite && remote.finite[s] != null) newCat.finite[s] = remote.finite[s];
+        if (remote.grezze && remote.grezze[s] != null) newCat.grezze[s] = remote.grezze[s];
       });
     }
-    return newJeans;
+    return newCat;
+  }
+
+  function fixAccImages(accArr) {
+    if (!accArr) return DEF.acc;
+    var imgMap = {
+      'cintura_lc':'img/cintura-lecoer','cravatta':'img/cintura-lecoer',
+      'cintura_pr':'img/cintura-provincia','cintura_cc':'img/cintura-crepcoer',
+      'cintura_rosa':'img/cintura-provincia'
+    };
+    accArr.forEach(function(a) { if (imgMap[a.id]) a.img = imgMap[a.id]; });
+    var hasRosa = accArr.some(function(a) { return a.id === 'cintura_rosa'; });
+    if (!hasRosa) accArr.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-provincia', emoji:'🌸'});
+    return accArr;
   }
 
   function listenFB() {
@@ -695,24 +813,113 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       if (noSync) return; var r = s.val();
       if (r) {
         if (r.scarpe) {
-          D.scarpe.uomo  = r.scarpe.uomo  || D.scarpe.uomo;
-          D.scarpe.donna = r.scarpe.donna || D.scarpe.donna;
-          D.scarpe.jeans = mergeJeans(r.scarpe.jeans);
+          D.scarpe.uomo    = mergeCategory(r.scarpe.uomo,    DEF.scarpe.uomo);
+          D.scarpe.donna   = mergeCategory(r.scarpe.donna,   DEF.scarpe.donna);
+          D.scarpe.jeans   = mergeCategory(r.scarpe.jeans,   DEF.scarpe.jeans);
+          D.scarpe.camicia = mergeCategory(r.scarpe.camicia, DEF.scarpe.camicia);
         }
         if (r.ling) D.ling = r.ling;
-        if (r.acc) {
-          D.acc = r.acc;
-          var hasRosa = D.acc.some(function(a) { return a.id === 'cintura_rosa'; });
-          if (!hasRosa) {
-            D.acc.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-rosa', emoji:'🌸'});
-          }
-        }
+        if (r.acc)  D.acc  = fixAccImages(r.acc);
         syncIn(); recalc(); renderAcc(); toast('sy','🔄 Aggiornato');
       }
     });
     db.ref('log').orderByChild('ts').limitToLast(40).on('value', function(s) {
       var e = []; s.forEach(function(c) { e.push(c.val()); }); logs = e.reverse(); renderLog();
     });
+  }
+
+  // ⭐ NOTE — Listener Firebase
+  function listenNotes() {
+    db.ref('notes').on('value', function(s) {
+      var r = s.val() || {};
+      Object.keys(notes).forEach(function(tab) {
+        var entry = r[tab];
+        var content = entry && typeof entry === 'object' ? (entry.content || '') : (entry || '');
+        notes[tab] = content;
+        notesMeta[tab] = entry && typeof entry === 'object' ? entry : null;
+        var ta = document.getElementById('nb-' + tab);
+        if (ta && document.activeElement !== ta) {
+          noteIsRemoteUpdate[tab] = true;
+          ta.value = content;
+          updateNoteMeta(tab);
+          setTimeout(function() { noteIsRemoteUpdate[tab] = false; }, 100);
+        } else if (ta && document.activeElement === ta) {
+          // utente sta digitando: mostra solo meta info
+          updateNoteMeta(tab);
+        }
+      });
+    });
+  }
+
+  function updateNoteMeta(tab) {
+    var meta = notesMeta[tab];
+    var el = document.getElementById('nb-' + tab + '-meta');
+    if (!el) return;
+    if (meta && meta.user && meta.ts) {
+      var dt = new Date(meta.ts);
+      var dts = dt.toLocaleString('it-IT', {day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+      el.innerHTML = '✏️ Ultima modifica: <b style="color:'+(meta.color||'#5C7A99')+'">'+meta.user+'</b> · '+dts;
+    } else {
+      el.textContent = '';
+    }
+  }
+
+  // ⭐ NOTE — Setup textarea handlers
+  function setupNotes() {
+    Object.keys(notes).forEach(function(tab) {
+      var ta = document.getElementById('nb-' + tab);
+      if (!ta) return;
+      ta.value = notes[tab] || '';
+      updateNoteMeta(tab);
+      ta.addEventListener('input', function() {
+        if (noteIsRemoteUpdate[tab]) return;
+        var st = document.getElementById('nb-' + tab + '-st');
+        if (st) st.textContent = '⌨️ Digitando...';
+        clearTimeout(noteSaveTimer[tab]);
+        noteSaveTimer[tab] = setTimeout(function() { saveNote(tab); }, 800);
+      });
+      ta.addEventListener('blur', function() {
+        clearTimeout(noteSaveTimer[tab]);
+        saveNote(tab);
+      });
+    });
+  }
+
+  function saveNote(tab) {
+    var ta = document.getElementById('nb-' + tab);
+    if (!ta) return;
+    var content = ta.value;
+    if (notes[tab] === content) {
+      var st0 = document.getElementById('nb-' + tab + '-st');
+      if (st0) st0.textContent = '';
+      return;
+    }
+    notes[tab] = content;
+    var st = document.getElementById('nb-' + tab + '-st');
+    var entry = {
+      content: content,
+      user: uname,
+      color: ucol,
+      ts: Date.now()
+    };
+    notesMeta[tab] = entry;
+    saveLoc();
+    if (!isLocal) {
+      db.ref('notes/' + tab).set(entry).then(function() {
+        if (st) {
+          st.textContent = '✅ Salvato';
+          setTimeout(function() { if (st.textContent === '✅ Salvato') st.textContent = ''; }, 1500);
+        }
+        updateNoteMeta(tab);
+      }).catch(function() { if (st) st.textContent = '❌ Errore'; });
+    } else {
+      if (st) {
+        st.textContent = '💾 Salvato locale';
+        setTimeout(function() { if (st.textContent === '💾 Salvato locale') st.textContent = ''; }, 1500);
+      }
+      updateNoteMeta(tab);
+    }
+    pLog('note', uname + ': Nota "' + tab + '" aggiornata');
   }
 
   function pushFB() {
@@ -729,26 +936,41 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 
   function loadLoc() {
     try {
-      var s = localStorage.getItem('crep3');
+      var s = localStorage.getItem('crep4');
       if (s) {
         var p = JSON.parse(s);
         if (p.scarpe) {
-          D.scarpe.uomo  = p.scarpe.uomo  || D.scarpe.uomo;
-          D.scarpe.donna = p.scarpe.donna || D.scarpe.donna;
-          D.scarpe.jeans = mergeJeans(p.scarpe.jeans);
+          D.scarpe.uomo    = mergeCategory(p.scarpe.uomo,    DEF.scarpe.uomo);
+          D.scarpe.donna   = mergeCategory(p.scarpe.donna,   DEF.scarpe.donna);
+          D.scarpe.jeans   = mergeCategory(p.scarpe.jeans,   DEF.scarpe.jeans);
+          D.scarpe.camicia = mergeCategory(p.scarpe.camicia, DEF.scarpe.camicia);
         }
         if (p.ling) D.ling = p.ling;
-        if (p.acc) {
-          D.acc = p.acc;
-          var hasRosa = D.acc.some(function(a) { return a.id === 'cintura_rosa'; });
-          if (!hasRosa) {
-            D.acc.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-rosa', emoji:'🌸'});
-          }
+        if (p.acc)  D.acc  = fixAccImages(p.acc);
+        if (p.notes) {
+          Object.keys(notes).forEach(function(t) {
+            if (p.notes[t]) {
+              if (typeof p.notes[t] === 'object') {
+                notes[t] = p.notes[t].content || '';
+                notesMeta[t] = p.notes[t];
+              } else {
+                notes[t] = p.notes[t];
+              }
+            }
+          });
         }
       }
     } catch(e) {}
   }
-  function saveLoc() { try { localStorage.setItem('crep3', JSON.stringify({scarpe:D.scarpe, ling:D.ling, acc:D.acc})); } catch(e) {} }
+  function saveLoc() {
+    try {
+      var notesToSave = {};
+      Object.keys(notes).forEach(function(t) {
+        notesToSave[t] = notesMeta[t] || { content: notes[t], user: uname, color: ucol, ts: Date.now() };
+      });
+      localStorage.setItem('crep4', JSON.stringify({scarpe:D.scarpe, ling:D.ling, acc:D.acc, notes:notesToSave}));
+    } catch(e) {}
+  }
 
   function toast(t, m) { var e = document.getElementById('tst'); e.className = 'tst '+t+' sh'; e.textContent = m; setTimeout(function() { e.classList.remove('sh'); }, 2200); }
 
@@ -767,52 +989,61 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   function syncIn() { document.querySelectorAll('.ed').forEach(function(i) { if (D.scarpe[i.dataset.c] && D.scarpe[i.dataset.c][i.dataset.s]) i.value = D.scarpe[i.dataset.c][i.dataset.s][i.dataset.z]||0; }); }
 
   function recalc() {
-    var uF=0,uG=0;
-    D.scarpe.uomo.sz.forEach(function(s) { var f=D.scarpe.uomo.finite[s]||0, g=D.scarpe.uomo.grezze[s]||0; tx('tu-'+s,f+g); uF+=f; uG+=g; });
-    tx('tu-f',uF); tx('tu-g',uG); tx('tu-a',uF+uG);
+    var totals = {};
+    ['uomo','donna','jeans','camicia'].forEach(function(cat) {
+      var F=0, G=0, prefixId = cat==='uomo'?'tu':cat==='donna'?'td':cat==='jeans'?'tj':'tc';
+      D.scarpe[cat].sz.forEach(function(s) {
+        var f=D.scarpe[cat].finite[s]||0, g=D.scarpe[cat].grezze[s]||0;
+        tx(prefixId+'-'+s, f+g); F+=f; G+=g;
+      });
+      tx(prefixId+'-f', F); tx(prefixId+'-g', G); tx(prefixId+'-a', F+G);
+      totals[cat] = {F:F, G:G};
+    });
 
-    var dF=0,dG=0;
-    D.scarpe.donna.sz.forEach(function(s) { var f=D.scarpe.donna.finite[s]||0, g=D.scarpe.donna.grezze[s]||0; tx('td-'+s,f+g); dF+=f; dG+=g; });
-    tx('td-f',dF); tx('td-g',dG); tx('td-a',dF+dG);
+    var uF=totals.uomo.F, uG=totals.uomo.G;
+    var dF=totals.donna.F, dG=totals.donna.G;
+    var jF=totals.jeans.F, jG=totals.jeans.G;
+    var cF=totals.camicia.F, cG=totals.camicia.G;
 
-    var jF=0,jG=0;
-    D.scarpe.jeans.sz.forEach(function(s) { var f=D.scarpe.jeans.finite[s]||0, g=D.scarpe.jeans.grezze[s]||0; tx('tj-'+s,f+g); jF+=f; jG+=g; });
-    tx('tj-f',jF); tx('tj-g',jG); tx('tj-a',jF+jG);
-
-    var tot = uF+uG+dF+dG+jF+jG;
+    var tot = uF+uG+dF+dG+jF+jG+cF+cG;
     tx('k-tot',tot);
-    tx('k-u',uF+uG); tx('k-d',dF+dG); tx('k-j',jF+jG);
-    tx('k-fn',uF+dF+jF); tx('k-gz',uG+dG+jG);
+    tx('k-u',uF+uG); tx('k-d',dF+dG); tx('k-j',jF+jG); tx('k-c',cF+cG);
+    tx('k-fn',uF+dF+jF+cF); tx('k-gz',uG+dG+jG+cG);
 
     tx('cu-g',uG); tx('cu-f',uF); tx('cu-t',uF+uG);
     tx('cd-g',dG); tx('cd-f',dF); tx('cd-t',dF+dG);
     tx('cj-g',jG); tx('cj-f',jF); tx('cj-t',jF+jG);
+    tx('cc-g',cG); tx('cc-f',cF); tx('cc-t',cF+cG);
 
     tx('bu',(uF+uG)+' paia');
     tx('bd',(dF+dG)+' paia');
     tx('bj',(jF+jG)+' pz');
+    tx('bc',(cF+cG)+' pz');
 
-    var vS = (uF+uG+dF+dG)*180 + (jF+jG)*75;
+    var vS = (uF+uG+dF+dG)*180 + (jF+jG)*75 + (cF+cG)*60;
     var vA = 0;
     D.ling.forEach(function(l) { vA+=l.stock*l.price; });
     D.acc.forEach(function(a) { vA+=a.stock*a.price; });
     tx('k-vl', vS+vA>0 ? '€'+(vS+vA).toLocaleString('it-IT') : '—');
 
     renderAlerts();
-    chips('uomo','sc-u'); chips('donna','sc-d'); chips('jeans','sc-j');
+    chips('uomo','sc-u'); chips('donna','sc-d'); chips('jeans','sc-j'); chips('camicia','sc-c');
     bars();
   }
   function tx(id,v) { var e=document.getElementById(id); if(e) e.textContent=v; }
 
   function renderAlerts() {
     var c=document.getElementById('alC'); c.innerHTML=''; var tF=0,tG=0;
-    ['uomo','donna','jeans'].forEach(function(ct) { D.scarpe[ct].sz.forEach(function(s) { tF+=(D.scarpe[ct].finite[s]||0); tG+=(D.scarpe[ct].grezze[s]||0); }); });
+    ['uomo','donna','jeans','camicia'].forEach(function(ct) { D.scarpe[ct].sz.forEach(function(s) { tF+=(D.scarpe[ct].finite[s]||0); tG+=(D.scarpe[ct].grezze[s]||0); }); });
     if(tF===0&&tG>0) c.innerHTML+='<div class="al w">⚠️ Tutti i '+tG+' articoli sono <b>grezzi</b></div>';
     if(tF>0) c.innerHTML+='<div class="al g">✅ <b>'+tF+' finiti</b> pronti!</div>';
-    ['uomo','donna','jeans'].forEach(function(ct) { D.scarpe[ct].sz.forEach(function(s) {
+    ['uomo','donna','jeans','camicia'].forEach(function(ct) { D.scarpe[ct].sz.forEach(function(s) {
       var t=(D.scarpe[ct].grezze[s]||0)+(D.scarpe[ct].finite[s]||0);
       if(t>0&&t<=2) {
-        var label = ct==='jeans' ? 'Jeans W'+s : ct.charAt(0).toUpperCase()+ct.slice(1)+' tg.'+s;
+        var label;
+        if (ct==='jeans') label = 'Jeans W'+s;
+        else if (ct==='camicia') label = 'Camicia tg.'+s;
+        else label = ct.charAt(0).toUpperCase()+ct.slice(1)+' tg.'+s;
         c.innerHTML+='<div class="al d">🔴 '+label+': '+t+'</div>';
       }
     }); });
@@ -832,7 +1063,8 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   }
 
   function bars() {
-    [{cat:'uomo',id:'ch-u',prefix:''},{cat:'donna',id:'ch-d',prefix:''},{cat:'jeans',id:'ch-j',prefix:'W'}].forEach(function(o) {
+    [{cat:'uomo',id:'ch-u',prefix:''},{cat:'donna',id:'ch-d',prefix:''},
+     {cat:'jeans',id:'ch-j',prefix:'W'},{cat:'camicia',id:'ch-c',prefix:''}].forEach(function(o) {
       var c=document.getElementById(o.id); if(!c) return; c.innerHTML=''; var mx=0;
       D.scarpe[o.cat].sz.forEach(function(s) { var t=(D.scarpe[o.cat].grezze[s]||0)+(D.scarpe[o.cat].finite[s]||0); if(t>mx) mx=t; });
       D.scarpe[o.cat].sz.forEach(function(s) {
@@ -914,15 +1146,26 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     ['finite','grezze'].forEach(function(s) {
       D.scarpe.jeans.sz.forEach(function(z) { l.push('Jeans,Settebello,'+s+',W'+z+','+(D.scarpe.jeans[s][z]||0)+',75'); });
     });
+    ['finite','grezze'].forEach(function(s) {
+      D.scarpe.camicia.sz.forEach(function(z) { l.push('Camicia,Bianca,'+s+','+z+','+(D.scarpe.camicia[s][z]||0)+',60'); });
+    });
     D.ling.forEach(function(x) { l.push('Linguette,'+x.name+',stock,—,'+x.stock+','+x.price); });
     D.acc.forEach(function(x) { l.push('Accessori,'+x.name+',stock,—,'+x.stock+','+x.price); });
+    l.push('');
+    l.push('NOTE');
+    Object.keys(notes).forEach(function(t) {
+      if (notes[t]) {
+        var clean = notes[t].replace(/"/g,'""').replace(/\n/g,' | ');
+        l.push('Note,'+t+',,,,"'+clean+'"');
+      }
+    });
     var b=new Blob([l.join('\n')],{type:'text/csv;charset=utf-8;'}), a=document.createElement('a');
     a.href=URL.createObjectURL(b); a.download='magazzino_crep_'+new Date().toISOString().slice(0,10)+'.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     pLog('add', uname+': Export CSV');
   };
   window.rstAll = function() {
-    if(!confirm('Resettare ai valori originali?')) return;
+    if(!confirm('Resettare ai valori originali? (le note saranno mantenute)')) return;
     D=JSON.parse(JSON.stringify(DEF)); syncIn(); recalc(); renderAcc(); pushFB(); saveLoc();
     toast('ok','🔄 Reset'); pLog('remove', uname+': Reset');
   };
