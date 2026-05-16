@@ -16,98 +16,45 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
-#loginOverlay {
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;
-  background:linear-gradient(135deg,#0d0d0d 0%,var(--dark) 40%,var(--navy) 100%);
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .5s,visibility .5s;
-}
-#loginOverlay.hidden {opacity:0;visibility:hidden;pointer-events:none}
-.login-box {
-  background:rgba(255,255,255,.06);backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.1);border-radius:20px;
-  padding:50px 40px;width:380px;max-width:90vw;text-align:center;
-  box-shadow:0 25px 60px rgba(0,0,0,.4);
-}
+#loginOverlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:linear-gradient(135deg,#0d0d0d 0%,var(--dark) 40%,var(--navy) 100%);display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+#loginOverlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.login-box{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:50px 40px;width:380px;max-width:90vw;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.4)}
 .login-box .logo{font-size:48px;margin-bottom:8px}
 .login-box h2{color:#fff;font-size:22px;font-weight:700;margin-bottom:4px}
 .login-box h2 span{color:var(--gold);font-style:italic}
 .login-box .sub{color:rgba(255,255,255,.4);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:30px}
-.login-box input[type=password] {
-  width:100%;padding:14px 18px;border:2px solid rgba(255,255,255,.15);
-  border-radius:10px;background:rgba(255,255,255,.08);color:#fff;
-  font-size:15px;font-family:inherit;text-align:center;letter-spacing:3px;
-  transition:all .3s;outline:none;
-}
+.login-box input[type=password]{width:100%;padding:14px 18px;border:2px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(255,255,255,.08);color:#fff;font-size:15px;font-family:inherit;text-align:center;letter-spacing:3px;transition:all .3s;outline:none}
 .login-box input[type=password]::placeholder{color:rgba(255,255,255,.3);letter-spacing:1px}
 .login-box input[type=password]:focus{border-color:var(--gold);background:rgba(255,255,255,.12);box-shadow:0 0 0 4px rgba(212,175,125,.15)}
-.login-box .login-btn {
-  width:100%;padding:14px;border:none;border-radius:10px;
-  background:linear-gradient(135deg,var(--gold),#c49a6c);color:#fff;
-  font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;
-  transition:all .3s;letter-spacing:1px;text-transform:uppercase;
-}
+.login-box .login-btn{width:100%;padding:14px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--gold),#c49a6c);color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .3s;letter-spacing:1px;text-transform:uppercase}
 .login-box .login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,175,125,.35)}
-.login-box .login-btn:active{transform:translateY(0)}
-.login-err {
-  color:#E74C3C;font-size:12px;margin-top:12px;min-height:18px;
-  transition:opacity .3s;font-weight:600;
-}
+.login-err{color:#E74C3C;font-size:12px;margin-top:12px;min-height:18px;font-weight:600}
 .login-hint{color:rgba(255,255,255,.25);font-size:9px;margin-top:20px;letter-spacing:1px}
 
-.hdr {
-  background:linear-gradient(135deg,#0d0d0d,var(--dark),var(--navy));
-  color:#fff;padding:22px 28px;position:relative;overflow:hidden;
-}
-.hdr::after {
-  content:'';position:absolute;top:-40%;right:-8%;width:350px;height:350px;
-  background:radial-gradient(circle,rgba(212,175,125,.12),transparent 70%);border-radius:50%;
-}
+.hdr{background:linear-gradient(135deg,#0d0d0d,var(--dark),var(--navy));color:#fff;padding:22px 28px;position:relative;overflow:hidden}
+.hdr::after{content:'';position:absolute;top:-40%;right:-8%;width:350px;height:350px;background:radial-gradient(circle,rgba(212,175,125,.12),transparent 70%);border-radius:50%}
 .hdr h1{font-size:26px;font-weight:700;letter-spacing:1px;position:relative;z-index:1}
 .hdr h1 span{color:var(--gold);font-style:italic}
 .hdr .sub{font-size:11px;opacity:.6;margin-top:3px;letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1}
-.hdr .logout-btn {
-  position:absolute;top:22px;right:28px;z-index:2;background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:6px 12px;
-  border-radius:6px;font-size:10px;cursor:pointer;transition:all .2s;font-weight:600;
-}
+.hdr .logout-btn{position:absolute;top:22px;right:28px;z-index:2;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:6px 12px;border-radius:6px;font-size:10px;cursor:pointer;transition:all .2s;font-weight:600}
 .hdr .logout-btn:hover{background:rgba(231,76,60,.3);color:#fff;border-color:rgba(231,76,60,.5)}
 
-.cbar {
-  background:var(--card);border-bottom:1px solid var(--border);
-  padding:6px 24px;display:flex;align-items:center;justify-content:space-between;
-  font-size:11px;color:var(--sub);
-}
+.cbar{background:var(--card);border-bottom:1px solid var(--border);padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--sub)}
 .cdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
 .cdot.on{background:var(--green);box-shadow:0 0 5px rgba(46,204,113,.5);animation:pulse 2s infinite}
 .cdot.off{background:var(--red)}.cdot.wt{background:var(--orange);animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .uol{display:flex;align-items:center;gap:3px}
-.uav {
-  width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:700;color:#fff;border:2px solid #fff;margin-left:-5px;
-  box-shadow:0 1px 3px rgba(0,0,0,.12);
-}
+.uav{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;border:2px solid #fff;margin-left:-5px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .uav:first-child{margin-left:0}
 
-.tst {
-  position:fixed;bottom:16px;left:16px;z-index:9999;padding:8px 14px;border-radius:8px;
-  font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px;
-  opacity:0;transform:translateY(16px);transition:all .35s;pointer-events:none;
-}
+.tst{position:fixed;bottom:16px;left:16px;z-index:9999;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px;opacity:0;transform:translateY(16px);transition:all .35s;pointer-events:none}
 .tst.sh{opacity:1;transform:translateY(0)}
 .tst.ok{background:#D4EDDA;color:#155724;border:1px solid #C3E6CB}
 .tst.sy{background:#D6EAF8;color:#1B4F72;border:1px solid #AED6F1}
 
-.nav {
-  display:flex;background:var(--card);box-shadow:0 2px 6px rgba(0,0,0,.05);
-  padding:0 24px;position:sticky;top:0;z-index:100;overflow-x:auto;
-}
-.nt {
-  padding:13px 18px;font-size:11px;font-weight:600;cursor:pointer;
-  border-bottom:3px solid transparent;color:var(--sub);transition:all .3s;
-  white-space:nowrap;user-select:none;
-}
+.nav{display:flex;background:var(--card);box-shadow:0 2px 6px rgba(0,0,0,.05);padding:0 24px;position:sticky;top:0;z-index:100;overflow-x:auto}
+.nt{padding:13px 18px;font-size:11px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;color:var(--sub);transition:all .3s;white-space:nowrap;user-select:none}
 .nt:hover{color:var(--text);background:var(--light)}
 .nt.a{color:var(--navy);border-bottom-color:var(--gold)}
 .tc{display:none;animation:fadeUp .35s}.tc.a{display:block}
@@ -116,10 +63,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .mn{max-width:1400px;margin:0 auto;padding:20px 24px 50px}
 
 .kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
-.kc {
-  background:var(--card);border-radius:11px;padding:16px 18px;
-  box-shadow:0 2px 8px rgba(0,0,0,.04);border-left:4px solid;transition:transform .2s;
-}
+.kc{background:var(--card);border-radius:11px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.04);border-left:4px solid;transition:transform .2s}
 .kc:hover{transform:translateY(-2px)}
 .kc.bl{border-color:#4A90E2}.kc.gd{border-color:var(--gold)}.kc.gn{border-color:var(--green)}
 .kc.rd{border-color:var(--red)}.kc.pr{border-color:var(--purple)}.kc.tl{border-color:var(--teal)}
@@ -129,26 +73,14 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .ks{font-size:10px;color:var(--sub);margin-top:3px}
 
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px}
-.pc {
-  background:var(--card);border-radius:13px;overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.05);transition:all .3s;
-}
+.pc{background:var(--card);border-radius:13px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.05);transition:all .3s}
 .pc:hover{box-shadow:0 8px 25px rgba(0,0,0,.1);transform:translateY(-3px)}
-.pi {
-  height:240px;position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#f2f0ed,#e8e4de);
-}
+.pi{height:240px;position:relative;overflow:hidden;background:linear-gradient(160deg,#f2f0ed,#e8e4de)}
 .pi img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .pc:hover .pi img{transform:scale(1.06)}
-.pi .ph {
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  height:100%;gap:8px;color:var(--sub);font-size:11px;
-}
+.pi .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--sub);font-size:11px}
 .pi .ph .em{font-size:48px}
-.pi .ov {
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.85));padding:12px 14px;
-}
+.pi .ov{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:12px 14px}
 .pi .ov .pn{color:#fff;font-size:11px;font-weight:600}
 .pi .ov .pp{color:var(--gold);font-size:15px;font-weight:700}
 .pinfo{padding:14px 16px}
@@ -178,18 +110,15 @@ table.iv tr:hover{background:#fafbfd}
 .cb.gz{background:#FFF3CD;color:#856404}.cb.fn{background:#D4EDDA;color:#155724}
 table.iv .tr{background:var(--light);font-weight:700}
 table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
-.ed {
-  background:transparent;border:2px solid transparent;border-radius:5px;
-  padding:2px 4px;font-size:14px;font-weight:700;color:var(--text);
-  width:48px;text-align:center;transition:all .2s;font-family:inherit;
-}
+.ed{background:transparent;border:2px solid transparent;border-radius:5px;padding:2px 4px;font-size:14px;font-weight:700;color:var(--text);width:48px;text-align:center;transition:all .2s;font-family:inherit}
 .ed:hover{border-color:#e1e6ed;background:var(--light)}
 .ed:focus{outline:none;border-color:#4A90E2;background:#fff;box-shadow:0 0 0 3px rgba(74,144,226,.12)}
 
+/* ⭐ ACCESSORIO CARD con pulsanti edit/delete */
 .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:22px}
-.ac{background:var(--card);border-radius:11px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s}
+.ac{background:var(--card);border-radius:11px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s;position:relative}
 .ac:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,0,0,.08)}
-.ac .aim{height:160px;overflow:hidden;background:linear-gradient(145deg,#f0ece6,#e4ddd4)}
+.ac .aim{height:160px;overflow:hidden;background:linear-gradient(145deg,#f0ece6,#e4ddd4);position:relative}
 .ac .aim img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .ac:hover .aim img{transform:scale(1.06)}
 .ac .aim .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:4px;color:var(--sub);font-size:10px}
@@ -199,6 +128,57 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 .ac .adsc{font-size:9px;color:var(--sub)}
 .ac .aq input{width:44px;padding:4px;border:2px solid var(--border);border-radius:5px;text-align:center;font-size:12px;font-weight:700;font-family:inherit}
 .ac .aq input:focus{outline:none;border-color:#4A90E2}
+
+/* ⭐ Edit/Delete buttons sulla card */
+.ac-actions{position:absolute;top:6px;right:6px;display:flex;gap:4px;opacity:0;transition:opacity .2s;z-index:5}
+.ac:hover .ac-actions{opacity:1}
+.ac-btn{width:26px;height:26px;border:none;border-radius:6px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .15s;backdrop-filter:blur(8px);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.ac-btn.ed-b{background:rgba(74,144,226,.92);color:#fff}
+.ac-btn.ed-b:hover{background:#4A90E2;transform:scale(1.08)}
+.ac-btn.dl-b{background:rgba(231,76,60,.92);color:#fff}
+.ac-btn.dl-b:hover{background:var(--red);transform:scale(1.08)}
+
+/* ⭐ Card "Aggiungi" */
+.ac-add{background:linear-gradient(145deg,#fafbff,#f0f4fc);border:2px dashed #b8c5d6;border-radius:11px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:230px;transition:all .25s;color:var(--navy)}
+.ac-add:hover{border-color:var(--gold);background:linear-gradient(145deg,#fffaf0,#fff5e0);color:var(--gold);transform:translateY(-2px)}
+.ac-add .add-ic{font-size:38px;margin-bottom:6px;font-weight:300}
+.ac-add .add-tx{font-size:11px;font-weight:700;letter-spacing:.5px}
+.ac-add .add-sub{font-size:9px;color:var(--sub);margin-top:3px;text-align:center}
+
+/* ⭐ MODAL */
+#prodModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,52,96,.55);backdrop-filter:blur(4px);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s}
+#prodModal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.pm-box{background:#fff;border-radius:16px;padding:28px 30px;width:100%;max-width:460px;box-shadow:0 25px 60px rgba(0,0,0,.3);animation:slideUp .3s}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.pm-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #f0f0f0}
+.pm-h h3{font-size:16px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+.pm-h .pm-x{background:transparent;border:none;font-size:22px;cursor:pointer;color:var(--sub);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.pm-h .pm-x:hover{background:#fee;color:var(--red)}
+.pm-fld{margin-bottom:14px}
+.pm-fld label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--sub);margin-bottom:5px}
+.pm-fld label .req{color:var(--red);margin-left:3px}
+.pm-fld input,.pm-fld select{width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;transition:all .2s;outline:none}
+.pm-fld input:focus,.pm-fld select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,125,.15)}
+.pm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pm-emoji-pick{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;padding:10px;background:var(--light);border-radius:8px}
+.pm-em-btn{width:36px;height:36px;border:2px solid transparent;background:#fff;border-radius:8px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.pm-em-btn:hover{border-color:var(--gold);transform:scale(1.1)}
+.pm-em-btn.sel{border-color:var(--gold);background:rgba(212,175,125,.15);transform:scale(1.05)}
+.pm-prev{background:linear-gradient(145deg,#f8f9fb,#f0f4fc);border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:14px;border:1px dashed #d0d8e3}
+.pm-prev .pp-em{font-size:42px;width:60px;height:60px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.pm-prev .pp-img{width:60px;height:60px;border-radius:10px;object-fit:cover;background:#fff}
+.pm-prev .pp-tx{flex:1}
+.pm-prev .pp-n{font-size:13px;font-weight:700}
+.pm-prev .pp-p{font-size:14px;font-weight:800;color:var(--gold);margin-top:2px}
+.pm-prev .pp-l{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.pm-act{display:flex;gap:10px;margin-top:18px;padding-top:14px;border-top:2px solid #f0f0f0}
+.pm-act button{flex:1;padding:11px;border:none;border-radius:8px;font-family:inherit;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .2s}
+.pm-act .pm-cn{background:var(--light);color:var(--text)}
+.pm-act .pm-cn:hover{background:#e1e6ed}
+.pm-act .pm-sv{background:linear-gradient(135deg,var(--gold),#c49a6c);color:#fff}
+.pm-act .pm-sv:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(212,175,125,.35)}
+.pm-err{color:var(--red);font-size:11px;font-weight:600;margin-top:8px;min-height:16px}
 
 .cc{background:var(--card);border-radius:11px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px}
 .ct{font-size:12px;font-weight:700;margin-bottom:12px}
@@ -243,28 +223,15 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 .al.i{background:#D6EAF8;color:#1B4F72;border:1px solid #AED6F1}
 .al.g{background:#D4EDDA;color:#155724;border:1px solid #C3E6CB}
 
-.pw-box {
-  background:var(--card);border-radius:11px;padding:18px;
-  box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px;
-  border-left:4px solid var(--red);
-}
+.pw-box{background:var(--card);border-radius:11px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:18px;border-left:4px solid var(--red)}
 .pw-box h3{font-size:13px;font-weight:700;margin-bottom:10px}
 
-/* ⭐ NOTE BOX */
-.note-box {
-  background:linear-gradient(135deg,#FFFDF7,#FFF8E7);
-  border-radius:11px;padding:16px 18px;margin-bottom:18px;
-  border-left:4px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.04);
-}
+.note-box{background:linear-gradient(135deg,#FFFDF7,#FFF8E7);border-radius:11px;padding:16px 18px;margin-bottom:18px;border-left:4px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .note-box .nbh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .note-box .nbh h3{font-size:12px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:6px}
 .note-box .nbh .nb-status{font-size:9px;color:var(--sub);font-style:italic;font-weight:600}
 .note-box .nb-meta{font-size:9px;color:var(--sub);margin-top:6px;font-style:italic}
-.note-box textarea {
-  width:100%;min-height:80px;padding:10px 12px;border:2px solid rgba(212,175,125,.2);
-  border-radius:8px;background:rgba(255,255,255,.7);font-family:inherit;font-size:12px;
-  color:var(--text);resize:vertical;transition:all .25s;outline:none;line-height:1.5;
-}
+.note-box textarea{width:100%;min-height:80px;padding:10px 12px;border:2px solid rgba(212,175,125,.2);border-radius:8px;background:rgba(255,255,255,.7);font-family:inherit;font-size:12px;color:var(--text);resize:vertical;transition:all .25s;outline:none;line-height:1.5}
 .note-box textarea:focus{border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(212,175,125,.15)}
 .note-box textarea::placeholder{color:#b8a888;font-style:italic}
 
@@ -276,8 +243,10 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   .cc div[style*="grid-template"]{grid-template-columns:1fr!important}
   .login-box{padding:35px 25px;width:340px}
   .hdr .logout-btn{top:14px;right:16px}
+  .pm-row{grid-template-columns:1fr}
+  .ac-actions{opacity:1}
 }
-@media print{.nav,.abr,.bt,.cbar,.tst,#vc,#loginOverlay,.logout-btn,.pw-box{display:none!important}.tc{display:block!important}}
+@media print{.nav,.abr,.bt,.cbar,.tst,#vc,#loginOverlay,.logout-btn,.pw-box,.ac-actions,.ac-add,#prodModal{display:none!important}.tc{display:block!important}}
 </style>
 </head>
 <body>
@@ -318,6 +287,54 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 
 <div class="tst" id="tst"></div>
 
+<!-- ⭐ MODAL PRODOTTO -->
+<div id="prodModal">
+  <div class="pm-box">
+    <div class="pm-h">
+      <h3 id="pm-title">➕ Aggiungi Prodotto</h3>
+      <button class="pm-x" onclick="closeProdModal()">×</button>
+    </div>
+    <div class="pm-prev" id="pm-preview">
+      <div class="pp-em" id="pm-prev-icon">📦</div>
+      <div class="pp-tx">
+        <div class="pp-n" id="pm-prev-name">Nuovo Prodotto</div>
+        <div class="pp-p" id="pm-prev-price">€0,00</div>
+        <div class="pp-l" id="pm-prev-group">Linguette</div>
+      </div>
+    </div>
+    <div class="pm-fld">
+      <label>Nome Prodotto<span class="req">*</span></label>
+      <input type="text" id="pm-name" placeholder="es. Linguetta Oro" maxlength="40">
+    </div>
+    <div class="pm-row">
+      <div class="pm-fld">
+        <label>Prezzo €<span class="req">*</span></label>
+        <input type="number" id="pm-price" min="0" step="1" placeholder="20">
+      </div>
+      <div class="pm-fld">
+        <label>Categoria<span class="req">*</span></label>
+        <select id="pm-group">
+          <option value="ling">🔖 Linguette</option>
+          <option value="acc">🎩 Cinture & Cravatte</option>
+        </select>
+      </div>
+    </div>
+    <div class="pm-fld">
+      <label>Emoji (icona)<span class="req">*</span></label>
+      <div class="pm-emoji-pick" id="pm-emoji-pick"></div>
+    </div>
+    <div class="pm-fld">
+      <label>Nome File Immagine (opzionale)</label>
+      <input type="text" id="pm-img" placeholder="es. linguetta-oro (senza .png) — lascia vuoto per usare solo emoji">
+    </div>
+    <div class="pm-err" id="pm-err"></div>
+    <div class="pm-act">
+      <button class="pm-cn" onclick="closeProdModal()">Annulla</button>
+      <button class="pm-sv" id="pm-save-btn" onclick="saveProduct()">💾 Salva</button>
+    </div>
+  </div>
+</div>
+
 <div class="mn">
 
 <!-- ══════ TAB: CATALOGO ══════ -->
@@ -327,19 +344,15 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     <div class="kc gd"><div class="kl">Scarpe Uomo</div><div class="kv" id="k-u">0</div><div class="ks">Biacco · €180</div></div>
     <div class="kc pr"><div class="kl">Scarpe Donna</div><div class="kv" id="k-d">0</div><div class="ks">Biacco · €180</div></div>
     <div class="kc bj"><div class="kl">Jeans</div><div class="kv" id="k-j">0</div><div class="ks">Settebello · €75</div></div>
-    <div class="kc cm"><div class="kl">Camicia</div><div class="kv" id="k-c">0</div><div class="ks">Bianca · €60</div></div>
+    <div class="kc cm"><div class="kl">Camicia</div><div class="kv" id="k-c">0</div><div class="ks">Bianca · €50</div></div>
     <div class="kc gn"><div class="kl">Finite</div><div class="kv" id="k-fn">0</div><div class="ks">Pronte vendita</div></div>
     <div class="kc rd"><div class="kl">Grezze</div><div class="kv" id="k-gz">0</div><div class="ks">Da lavorare</div></div>
     <div class="kc tl"><div class="kl">Valore</div><div class="kv" id="k-vl">—</div><div class="ks">Prezzo vendita</div></div>
   </div>
   <div class="als" id="alC"></div>
 
-  <!-- Note Catalogo -->
   <div class="note-box">
-    <div class="nbh">
-      <h3>📝 Note Generali Catalogo</h3>
-      <span class="nb-status" id="nb-cat-st"></span>
-    </div>
+    <div class="nbh"><h3>📝 Note Generali Catalogo</h3><span class="nb-status" id="nb-cat-st"></span></div>
     <textarea id="nb-cat" data-tab="cat" placeholder="Aggiungi qui le tue note generali sul catalogo... (salvate automaticamente, condivise con il team)"></textarea>
     <div class="nb-meta" id="nb-cat-meta"></div>
   </div>
@@ -394,12 +407,12 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     </div></div>
   </div>
 
-  <div class="stit">👔 Camicia Bianca <span class="bdg">€60,00</span></div>
+  <div class="stit">👔 Camicia Bianca <span class="bdg">€50,00</span></div>
   <div class="pgrid">
     <div class="pc"><div class="pi">
       <img src="img/camicia-bianca.png" alt="Camicia Bianca" onerror="imgFail(this)">
       <div class="ph" style="display:none"><div class="em">👔</div><div>Camicia Bianca</div></div>
-      <div class="ov"><div class="pn">Camicia Bianca</div><div class="pp">€60,00</div></div>
+      <div class="ov"><div class="pn">Camicia Bianca</div><div class="pp">€50,00</div></div>
     </div><div class="pinfo">
       <div class="pname">Camicia Bianca</div>
       <div class="ptype">Cotone premium · Taglie 39-43</div>
@@ -438,7 +451,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   <div class="stit">👞 Mocassino Biacco Uomo — €180 <span class="bdg" id="bu">0</span></div>
   <div class="note-box">
     <div class="nbh"><h3>📝 Note — Scarpe Uomo</h3><span class="nb-status" id="nb-uomo-st"></span></div>
-    <textarea id="nb-uomo" data-tab="uomo" placeholder="Note specifiche su Scarpe Uomo (riassortimenti, problemi qualità, riservato cliente, ecc.)..."></textarea>
+    <textarea id="nb-uomo" data-tab="uomo" placeholder="Note specifiche su Scarpe Uomo..."></textarea>
     <div class="nb-meta" id="nb-uomo-meta"></div>
   </div>
   <div class="tw"><div class="twh"><h3>📋 Inventario Uomo</h3></div>
@@ -504,12 +517,12 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   </div>
 </div>
 
-<!-- ══════ TAB: JEANS (con W40 nuova) ══════ -->
+<!-- ══════ TAB: JEANS ══════ -->
 <div class="tc" id="tab-jeans">
   <div class="stit">👖 Jeans Settebello — €75 <span class="bdg" id="bj">0</span></div>
   <div class="note-box">
     <div class="nbh"><h3>📝 Note — Jeans Settebello</h3><span class="nb-status" id="nb-jeans-st"></span></div>
-    <textarea id="nb-jeans" data-tab="jeans" placeholder="Note specifiche sui Jeans (lavaggi, taglie esaurite, ecc.)..."></textarea>
+    <textarea id="nb-jeans" data-tab="jeans" placeholder="Note specifiche sui Jeans..."></textarea>
     <div class="nb-meta" id="nb-jeans-meta"></div>
   </div>
   <div class="tw"><div class="twh"><h3>📋 Inventario Jeans</h3></div>
@@ -537,12 +550,12 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   </div>
 </div>
 
-<!-- ══════ TAB: CAMICIA (NUOVO) ══════ -->
+<!-- ══════ TAB: CAMICIA ══════ -->
 <div class="tc" id="tab-camicia">
-  <div class="stit">👔 Camicia Bianca — €60 <span class="bdg" id="bc">0</span></div>
+  <div class="stit">👔 Camicia Bianca — €50 <span class="bdg" id="bc">0</span></div>
   <div class="note-box">
     <div class="nbh"><h3>📝 Note — Camicia Bianca</h3><span class="nb-status" id="nb-camicia-st"></span></div>
-    <textarea id="nb-camicia" data-tab="camicia" placeholder="Note specifiche sulla Camicia Bianca (collo, manica, lavaggi, ecc.)..."></textarea>
+    <textarea id="nb-camicia" data-tab="camicia" placeholder="Note specifiche sulla Camicia Bianca..."></textarea>
     <div class="nb-meta" id="nb-camicia-meta"></div>
   </div>
   <div class="tw"><div class="twh"><h3>📋 Inventario Camicia</h3></div>
@@ -577,8 +590,10 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     <textarea id="nb-acc" data-tab="acc" placeholder="Note specifiche su Linguette, Cinture, Cravatte..."></textarea>
     <div class="nb-meta" id="nb-acc-meta"></div>
   </div>
-  <div class="stit">🔖 Linguette</div><div class="ag" id="lgT"></div>
-  <div class="stit">🎩 Cinture & Cravatte</div><div class="ag" id="acT"></div>
+  <div class="stit">🔖 Linguette <span class="bdg" style="background:var(--green)" onclick="openProdModal('ling')" style="cursor:pointer">+ AGGIUNGI</span></div>
+  <div class="ag" id="lgT"></div>
+  <div class="stit">🎩 Cinture & Cravatte <span class="bdg" style="background:var(--green);cursor:pointer" onclick="openProdModal('acc')">+ AGGIUNGI</span></div>
+  <div class="ag" id="acT"></div>
 </div>
 
 <!-- ══════ TAB: GESTIONE ══════ -->
@@ -641,16 +656,11 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     storageBucket: "magazzino-crepp.firebasestorage.app"
   });
   var db = firebase.database();
-
   var DEFAULT_PWD = 'crepcoer2024';
 
   function hashPwd(str) {
     var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-      var ch = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + ch;
-      hash |= 0;
-    }
+    for (var i = 0; i < str.length; i++) { var ch = str.charCodeAt(i); hash = ((hash << 5) - hash) + ch; hash |= 0; }
     return 'h_' + Math.abs(hash).toString(36);
   }
 
@@ -701,11 +711,10 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   } else { document.getElementById('loginPwd').focus(); }
 
   window.imgFail = function(img) {
-    var src = img.src;
-    var base = src.replace(/\.[^.]+$/, '');
+    var src = img.src; var base = src.replace(/\.[^.]+$/, '');
     if (src.indexOf('.png') > -1) { img.src = base + '.webp'; }
     else if (src.indexOf('.webp') > -1) { img.src = base + '.jpg'; }
-    else { img.style.display = 'none'; img.nextElementSibling.style.display = 'flex'; }
+    else { img.style.display = 'none'; if (img.nextElementSibling) img.nextElementSibling.style.display = 'flex'; }
   };
 
   var isLocal = true, noSync = false;
@@ -713,13 +722,12 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   var uname = 'Utente ' + uid.substr(2, 3).toUpperCase();
   var ucol = ['#E74C3C','#3498DB','#2ECC71','#9B59B6','#F39C12','#1ABC9C','#E67E22','#E91E63'][Math.floor(Math.random() * 8)];
 
-  // ⭐ DEFAULT con jeans W40 + camicia
   var DEF = {
     scarpe: {
       uomo:    { sz:[40,41,42,43,44,45], finite:{40:0,41:0,42:0,43:0,44:0,45:0}, grezze:{40:21,41:23,42:21,43:12,44:11,45:10}, price:180 },
       donna:   { sz:[36,37,38,39,40,41,42], finite:{36:0,37:0,38:0,39:0,40:0,41:0,42:0}, grezze:{36:2,37:3,38:3,39:3,40:3,41:2,42:1}, price:180 },
       jeans:   { sz:[34,36,38,40], finite:{34:0,36:0,38:0,40:0}, grezze:{34:0,36:0,38:0,40:0}, price:75 },
-      camicia: { sz:[39,40,42,43], finite:{39:0,40:0,42:0,43:0}, grezze:{39:0,40:0,42:0,43:0}, price:60 }
+      camicia: { sz:[39,40,42,43], finite:{39:0,40:0,42:0,43:0}, grezze:{39:0,40:0,42:0,43:0}, price:50 }
     },
     ling: [
       {id:'borchie',   name:'Linguetta Borchie',   price:30, stock:0, img:'img/linguetta-borchie',   emoji:'⚫'},
@@ -729,10 +737,9 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     ],
     acc: [
       {id:'cintura_lc',   name:'Cintura Le Coer',     price:65, stock:0, img:'img/cintura-lecoer',    emoji:'🔗'},
-      {id:'cravatta',     name:'Cravatta Le Coer',    price:65, stock:0, img:'img/cintura-lecoer',    emoji:'👔'},
       {id:'cintura_pr',   name:'Cintura Provincia',   price:70, stock:0, img:'img/cintura-provincia', emoji:'💠'},
       {id:'cintura_cc',   name:'Cintura Crep À Coer', price:70, stock:0, img:'img/cintura-crepcoer',  emoji:'🔗'},
-      {id:'cintura_rosa', name:'Cintura Rosa',        price:70, stock:0, img:'img/cintura-provincia', emoji:'🌸'}
+      {id:'cintura_rosa', name:'Cintura Rosa',        price:70, stock:0, img:null,                    emoji:'🌸'}
     ]
   };
 
@@ -742,10 +749,16 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   var noteSaveTimer = {};
   var noteIsRemoteUpdate = {};
 
+  // ⭐ EMOJI POPOLARI per il picker
+  var EMOJI_OPTIONS = ['🔗','💎','🪙','⚜️','⚫','⚪','🌸','🌺','🌼','💠','🔶','🔷','✨','⭐','🎀','🎩','👔','👞','👠','💍','🔱','♠️','♥️','🏆','🌹','💐','🍀','🌟','💫','🔆','🟢','🟡','🔴','🟣','🟠','📦'];
+
+  // ⭐ STATO MODAL
+  var modalState = { mode:'add', group:'ling', editIdx:-1, selectedEmoji:'🔗' };
+
   var appStarted = false;
   function initApp() {
     if (appStarted) return; appStarted = true;
-    loadLoc(); setupFB(); syncIn(); recalc(); renderAcc(); updSz(); setupNotes();
+    loadLoc(); setupFB(); syncIn(); recalc(); renderAcc(); updSz(); setupNotes(); setupModal();
     document.getElementById('mc').addEventListener('change', updSz);
     document.querySelectorAll('.ed').forEach(function(i) { i.addEventListener('change', onEd); });
   }
@@ -783,7 +796,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     });
   }
 
-  // ⭐ Merge che preserva struttura corretta anche se Firebase ha vecchie taglie
   function mergeCategory(remote, defaultCat) {
     var newCat = JSON.parse(JSON.stringify(defaultCat));
     if (remote) {
@@ -795,16 +807,32 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     return newCat;
   }
 
+  // ⭐ Cleanup linguette: rimuove eventuali entry corrotte ma preserva quelle custom
+  function fixLingImages(lingArr) {
+    if (!lingArr) return DEF.ling;
+    var imgMap = {
+      'borchie':'img/linguetta-borchie','cristallo':'img/linguetta-cristallo',
+      'argento':'img/linguetta-argento','stemma':'img/linguetta-stemma'
+    };
+    lingArr.forEach(function(l) {
+      if (imgMap[l.id]) l.img = imgMap[l.id];
+    });
+    return lingArr;
+  }
+
+  // ⭐ Cleanup accessori: rimuove cravatta legacy, fixa rosa
   function fixAccImages(accArr) {
     if (!accArr) return DEF.acc;
+    accArr = accArr.filter(function(a) { return a.id !== 'cravatta'; });
     var imgMap = {
-      'cintura_lc':'img/cintura-lecoer','cravatta':'img/cintura-lecoer',
-      'cintura_pr':'img/cintura-provincia','cintura_cc':'img/cintura-crepcoer',
-      'cintura_rosa':'img/cintura-provincia'
+      'cintura_lc':'img/cintura-lecoer','cintura_pr':'img/cintura-provincia','cintura_cc':'img/cintura-crepcoer'
     };
-    accArr.forEach(function(a) { if (imgMap[a.id]) a.img = imgMap[a.id]; });
+    accArr.forEach(function(a) {
+      if (imgMap[a.id]) a.img = imgMap[a.id];
+      if (a.id === 'cintura_rosa') { a.img = null; if (!a.emoji) a.emoji = '🌸'; }
+    });
     var hasRosa = accArr.some(function(a) { return a.id === 'cintura_rosa'; });
-    if (!hasRosa) accArr.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:'img/cintura-provincia', emoji:'🌸'});
+    if (!hasRosa) accArr.push({id:'cintura_rosa', name:'Cintura Rosa', price:70, stock:0, img:null, emoji:'🌸'});
     return accArr;
   }
 
@@ -817,8 +845,9 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
           D.scarpe.donna   = mergeCategory(r.scarpe.donna,   DEF.scarpe.donna);
           D.scarpe.jeans   = mergeCategory(r.scarpe.jeans,   DEF.scarpe.jeans);
           D.scarpe.camicia = mergeCategory(r.scarpe.camicia, DEF.scarpe.camicia);
+          D.scarpe.camicia.price = 50;
         }
-        if (r.ling) D.ling = r.ling;
+        if (r.ling) D.ling = fixLingImages(r.ling);
         if (r.acc)  D.acc  = fixAccImages(r.acc);
         syncIn(); recalc(); renderAcc(); toast('sy','🔄 Aggiornato');
       }
@@ -828,7 +857,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     });
   }
 
-  // ⭐ NOTE — Listener Firebase
   function listenNotes() {
     db.ref('notes').on('value', function(s) {
       var r = s.val() || {};
@@ -844,7 +872,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
           updateNoteMeta(tab);
           setTimeout(function() { noteIsRemoteUpdate[tab] = false; }, 100);
         } else if (ta && document.activeElement === ta) {
-          // utente sta digitando: mostra solo meta info
           updateNoteMeta(tab);
         }
       });
@@ -859,12 +886,9 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       var dt = new Date(meta.ts);
       var dts = dt.toLocaleString('it-IT', {day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
       el.innerHTML = '✏️ Ultima modifica: <b style="color:'+(meta.color||'#5C7A99')+'">'+meta.user+'</b> · '+dts;
-    } else {
-      el.textContent = '';
-    }
+    } else { el.textContent = ''; }
   }
 
-  // ⭐ NOTE — Setup textarea handlers
   function setupNotes() {
     Object.keys(notes).forEach(function(tab) {
       var ta = document.getElementById('nb-' + tab);
@@ -896,27 +920,16 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     }
     notes[tab] = content;
     var st = document.getElementById('nb-' + tab + '-st');
-    var entry = {
-      content: content,
-      user: uname,
-      color: ucol,
-      ts: Date.now()
-    };
+    var entry = { content: content, user: uname, color: ucol, ts: Date.now() };
     notesMeta[tab] = entry;
     saveLoc();
     if (!isLocal) {
       db.ref('notes/' + tab).set(entry).then(function() {
-        if (st) {
-          st.textContent = '✅ Salvato';
-          setTimeout(function() { if (st.textContent === '✅ Salvato') st.textContent = ''; }, 1500);
-        }
+        if (st) { st.textContent = '✅ Salvato'; setTimeout(function() { if (st.textContent === '✅ Salvato') st.textContent = ''; }, 1500); }
         updateNoteMeta(tab);
       }).catch(function() { if (st) st.textContent = '❌ Errore'; });
     } else {
-      if (st) {
-        st.textContent = '💾 Salvato locale';
-        setTimeout(function() { if (st.textContent === '💾 Salvato locale') st.textContent = ''; }, 1500);
-      }
+      if (st) { st.textContent = '💾 Salvato locale'; setTimeout(function() { if (st.textContent === '💾 Salvato locale') st.textContent = ''; }, 1500); }
       updateNoteMeta(tab);
     }
     pLog('note', uname + ': Nota "' + tab + '" aggiornata');
@@ -936,7 +949,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 
   function loadLoc() {
     try {
-      var s = localStorage.getItem('crep4');
+      var s = localStorage.getItem('crep6');
       if (s) {
         var p = JSON.parse(s);
         if (p.scarpe) {
@@ -944,18 +957,15 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
           D.scarpe.donna   = mergeCategory(p.scarpe.donna,   DEF.scarpe.donna);
           D.scarpe.jeans   = mergeCategory(p.scarpe.jeans,   DEF.scarpe.jeans);
           D.scarpe.camicia = mergeCategory(p.scarpe.camicia, DEF.scarpe.camicia);
+          D.scarpe.camicia.price = 50;
         }
-        if (p.ling) D.ling = p.ling;
+        if (p.ling) D.ling = fixLingImages(p.ling);
         if (p.acc)  D.acc  = fixAccImages(p.acc);
         if (p.notes) {
           Object.keys(notes).forEach(function(t) {
             if (p.notes[t]) {
-              if (typeof p.notes[t] === 'object') {
-                notes[t] = p.notes[t].content || '';
-                notesMeta[t] = p.notes[t];
-              } else {
-                notes[t] = p.notes[t];
-              }
+              if (typeof p.notes[t] === 'object') { notes[t] = p.notes[t].content || ''; notesMeta[t] = p.notes[t]; }
+              else { notes[t] = p.notes[t]; }
             }
           });
         }
@@ -968,7 +978,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       Object.keys(notes).forEach(function(t) {
         notesToSave[t] = notesMeta[t] || { content: notes[t], user: uname, color: ucol, ts: Date.now() };
       });
-      localStorage.setItem('crep4', JSON.stringify({scarpe:D.scarpe, ling:D.ling, acc:D.acc, notes:notesToSave}));
+      localStorage.setItem('crep6', JSON.stringify({scarpe:D.scarpe, ling:D.ling, acc:D.acc, notes:notesToSave}));
     } catch(e) {}
   }
 
@@ -999,33 +1009,27 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       tx(prefixId+'-f', F); tx(prefixId+'-g', G); tx(prefixId+'-a', F+G);
       totals[cat] = {F:F, G:G};
     });
-
     var uF=totals.uomo.F, uG=totals.uomo.G;
     var dF=totals.donna.F, dG=totals.donna.G;
     var jF=totals.jeans.F, jG=totals.jeans.G;
     var cF=totals.camicia.F, cG=totals.camicia.G;
-
     var tot = uF+uG+dF+dG+jF+jG+cF+cG;
     tx('k-tot',tot);
     tx('k-u',uF+uG); tx('k-d',dF+dG); tx('k-j',jF+jG); tx('k-c',cF+cG);
     tx('k-fn',uF+dF+jF+cF); tx('k-gz',uG+dG+jG+cG);
-
     tx('cu-g',uG); tx('cu-f',uF); tx('cu-t',uF+uG);
     tx('cd-g',dG); tx('cd-f',dF); tx('cd-t',dF+dG);
     tx('cj-g',jG); tx('cj-f',jF); tx('cj-t',jF+jG);
     tx('cc-g',cG); tx('cc-f',cF); tx('cc-t',cF+cG);
-
     tx('bu',(uF+uG)+' paia');
     tx('bd',(dF+dG)+' paia');
     tx('bj',(jF+jG)+' pz');
     tx('bc',(cF+cG)+' pz');
-
-    var vS = (uF+uG+dF+dG)*180 + (jF+jG)*75 + (cF+cG)*60;
+    var vS = (uF+uG+dF+dG)*180 + (jF+jG)*75 + (cF+cG)*50;
     var vA = 0;
     D.ling.forEach(function(l) { vA+=l.stock*l.price; });
     D.acc.forEach(function(a) { vA+=a.stock*a.price; });
     tx('k-vl', vS+vA>0 ? '€'+(vS+vA).toLocaleString('it-IT') : '—');
-
     renderAlerts();
     chips('uomo','sc-u'); chips('donna','sc-d'); chips('jeans','sc-j'); chips('camicia','sc-c');
     bars();
@@ -1077,21 +1081,33 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     });
   }
 
-  function renderAcc() { accG(D.ling,'lgC'); accG(D.ling,'lgT'); accG(D.acc,'acC'); accG(D.acc,'acT'); }
-  function accG(items, cid) {
+  // ⭐ RENDER ACCESSORI con edit/delete + card "Aggiungi"
+  function renderAcc() {
+    accG(D.ling,'lgC','ling'); accG(D.ling,'lgT','ling',true);
+    accG(D.acc,'acC','acc');   accG(D.acc,'acT','acc',true);
+  }
+  function accG(items, cid, grp, showAddBtn) {
     var c=document.getElementById(cid); if(!c) return; c.innerHTML='';
-    var grp = cid.indexOf('lg')===0 ? 'ling' : 'acc';
     items.forEach(function(item, idx) {
-      var imgBase = item.img || 'img/placeholder';
       var emoji = item.emoji || '📦';
       var card = document.createElement('div'); card.className='ac';
+      var imgHtml;
+      if (!item.img) {
+        imgHtml = '<div class="ph" style="display:flex"><div class="em" style="font-size:52px">'+emoji+'</div><div>'+escapeHtml(item.name)+'</div></div>';
+      } else {
+        imgHtml = '<img src="'+item.img+'.png" alt="'+escapeHtml(item.name)+'" onerror="imgFail(this)">' +
+                  '<div class="ph" style="display:none"><div class="em">'+emoji+'</div><div>'+escapeHtml(item.name)+'</div></div>';
+      }
       card.innerHTML =
-        '<div class="aim">' +
-          '<img src="'+imgBase+'.png" alt="'+item.name+'" onerror="imgFail(this)">' +
-          '<div class="ph" style="display:none"><div class="em">'+emoji+'</div><div>'+item.name+'</div></div>' +
-        '</div>' +
+        // Pulsanti edit/delete (solo nella tab Accessori, non nel Catalogo)
+        (showAddBtn ?
+          '<div class="ac-actions">' +
+          '  <button class="ac-btn ed-b" onclick="editProduct(\''+grp+'\','+idx+')" title="Modifica">✏️</button>' +
+          '  <button class="ac-btn dl-b" onclick="deleteProduct(\''+grp+'\','+idx+')" title="Elimina">🗑️</button>' +
+          '</div>' : '') +
+        '<div class="aim">' + imgHtml + '</div>' +
         '<div class="abdy"><div>' +
-          '<div class="an">'+item.name+'</div>' +
+          '<div class="an">'+escapeHtml(item.name)+'</div>' +
           '<div class="ap">€'+item.price+',00</div>' +
           '<div class="adsc">Stock: '+item.stock+'</div>' +
         '</div><div class="aq">' +
@@ -1099,12 +1115,156 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
         '</div></div>';
       c.appendChild(card);
     });
+    // Card "+ Aggiungi" solo nella tab Accessori
+    if (showAddBtn) {
+      var addCard = document.createElement('div');
+      addCard.className = 'ac-add';
+      addCard.onclick = function() { openProdModal(grp); };
+      addCard.innerHTML =
+        '<div class="add-ic">+</div>' +
+        '<div class="add-tx">AGGIUNGI</div>' +
+        '<div class="add-sub">'+(grp==='ling'?'Nuova linguetta':'Nuova cintura/cravatta')+'</div>';
+      c.appendChild(addCard);
+    }
   }
+  function escapeHtml(s) { return String(s||'').replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
   window.updA = function(inp) {
     var g=inp.dataset.g, i=parseInt(inp.dataset.i), v=parseInt(inp.value)||0;
     if(v<0) v=0; inp.value=v; D[g][i].stock=v;
     renderAcc(); recalc(); pushFB(); saveLoc(); toast('ok','✅ Aggiornato');
     pLog('save', uname+': '+D[g][i].name+' stock='+v);
+  };
+
+  // ⭐ MODAL: Setup picker emoji
+  function setupModal() {
+    var pick = document.getElementById('pm-emoji-pick');
+    pick.innerHTML = '';
+    EMOJI_OPTIONS.forEach(function(em) {
+      var b = document.createElement('button');
+      b.className = 'pm-em-btn';
+      b.textContent = em;
+      b.onclick = function() {
+        modalState.selectedEmoji = em;
+        pick.querySelectorAll('.pm-em-btn').forEach(function(x) { x.classList.remove('sel'); });
+        b.classList.add('sel');
+        updateModalPreview();
+      };
+      pick.appendChild(b);
+    });
+    // Live preview update
+    document.getElementById('pm-name').addEventListener('input', updateModalPreview);
+    document.getElementById('pm-price').addEventListener('input', updateModalPreview);
+    document.getElementById('pm-group').addEventListener('change', updateModalPreview);
+    document.getElementById('pm-img').addEventListener('input', updateModalPreview);
+    // Close on overlay click
+    document.getElementById('prodModal').addEventListener('click', function(e) {
+      if (e.target.id === 'prodModal') closeProdModal();
+    });
+  }
+
+  function updateModalPreview() {
+    var name = document.getElementById('pm-name').value || 'Nuovo Prodotto';
+    var price = document.getElementById('pm-price').value || '0';
+    var group = document.getElementById('pm-group').value;
+    var img = document.getElementById('pm-img').value.trim();
+    document.getElementById('pm-prev-name').textContent = name;
+    document.getElementById('pm-prev-price').textContent = '€' + price + ',00';
+    document.getElementById('pm-prev-group').textContent = group === 'ling' ? '🔖 Linguette' : '🎩 Cinture & Cravatte';
+    var iconEl = document.getElementById('pm-prev-icon');
+    iconEl.outerHTML = '<div class="pp-em" id="pm-prev-icon">' + modalState.selectedEmoji + '</div>';
+  }
+
+  window.openProdModal = function(group, editIdx) {
+    modalState.mode = (editIdx != null && editIdx >= 0) ? 'edit' : 'add';
+    modalState.group = group;
+    modalState.editIdx = editIdx != null ? editIdx : -1;
+    var titleEl = document.getElementById('pm-title');
+    var saveBtn = document.getElementById('pm-save-btn');
+    document.getElementById('pm-err').textContent = '';
+    if (modalState.mode === 'edit') {
+      var item = D[group][editIdx];
+      titleEl.textContent = '✏️ Modifica Prodotto';
+      saveBtn.textContent = '💾 Aggiorna';
+      document.getElementById('pm-name').value = item.name || '';
+      document.getElementById('pm-price').value = item.price || 0;
+      document.getElementById('pm-group').value = group;
+      document.getElementById('pm-group').disabled = true;
+      document.getElementById('pm-img').value = item.img ? item.img.replace(/^img\//,'') : '';
+      modalState.selectedEmoji = item.emoji || '📦';
+    } else {
+      titleEl.textContent = '➕ Aggiungi Prodotto';
+      saveBtn.textContent = '💾 Salva';
+      document.getElementById('pm-name').value = '';
+      document.getElementById('pm-price').value = group === 'ling' ? 25 : 70;
+      document.getElementById('pm-group').value = group;
+      document.getElementById('pm-group').disabled = false;
+      document.getElementById('pm-img').value = '';
+      modalState.selectedEmoji = group === 'ling' ? '🔗' : '🎩';
+    }
+    // Aggiorna selezione emoji
+    var pick = document.getElementById('pm-emoji-pick');
+    pick.querySelectorAll('.pm-em-btn').forEach(function(b) {
+      b.classList.toggle('sel', b.textContent === modalState.selectedEmoji);
+    });
+    updateModalPreview();
+    document.getElementById('prodModal').classList.add('show');
+    setTimeout(function() { document.getElementById('pm-name').focus(); }, 100);
+  };
+
+  window.closeProdModal = function() {
+    document.getElementById('prodModal').classList.remove('show');
+  };
+
+  window.saveProduct = function() {
+    var name = document.getElementById('pm-name').value.trim();
+    var price = parseInt(document.getElementById('pm-price').value);
+    var group = document.getElementById('pm-group').value;
+    var imgRaw = document.getElementById('pm-img').value.trim();
+    var err = document.getElementById('pm-err');
+    err.textContent = '';
+    if (!name) { err.textContent = '❌ Nome obbligatorio'; return; }
+    if (isNaN(price) || price < 0) { err.textContent = '❌ Prezzo non valido'; return; }
+    if (!modalState.selectedEmoji) { err.textContent = '❌ Seleziona un\'emoji'; return; }
+    var img = imgRaw ? (imgRaw.indexOf('img/')===0 ? imgRaw : 'img/' + imgRaw) : null;
+    // Rimuovi estensione se presente
+    if (img) img = img.replace(/\.(png|jpe?g|webp|gif)$/i, '');
+
+    if (modalState.mode === 'edit' && modalState.editIdx >= 0) {
+      var oldItem = D[modalState.group][modalState.editIdx];
+      oldItem.name = name;
+      oldItem.price = price;
+      oldItem.emoji = modalState.selectedEmoji;
+      oldItem.img = img;
+      pLog('save', uname + ': Modificato "' + name + '"');
+      toast('ok', '✅ Prodotto aggiornato');
+    } else {
+      // Nuovo prodotto: cambia gruppo se selezionato è diverso
+      modalState.group = group;
+      var newItem = {
+        id: 'custom_' + Date.now() + '_' + Math.random().toString(36).substr(2,4),
+        name: name, price: price, stock: 0, img: img, emoji: modalState.selectedEmoji
+      };
+      D[group].push(newItem);
+      pLog('add', uname + ': Aggiunto "' + name + '" a ' + (group==='ling'?'Linguette':'Accessori'));
+      toast('ok', '✅ Prodotto aggiunto');
+    }
+    renderAcc(); recalc(); pushFB(); saveLoc();
+    closeProdModal();
+  };
+
+  window.editProduct = function(group, idx) {
+    openProdModal(group, idx);
+  };
+
+  window.deleteProduct = function(group, idx) {
+    var item = D[group][idx];
+    if (!item) return;
+    if (!confirm('🗑️ Eliminare "' + item.name + '"?\n\nQuesta azione è permanente e sarà sincronizzata con tutti gli utenti.')) return;
+    D[group].splice(idx, 1);
+    renderAcc(); recalc(); pushFB(); saveLoc();
+    toast('ok', '🗑️ "' + item.name + '" eliminato');
+    pLog('remove', uname + ': Eliminato "' + item.name + '"');
   };
 
   function updSz() {
@@ -1147,12 +1307,11 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       D.scarpe.jeans.sz.forEach(function(z) { l.push('Jeans,Settebello,'+s+',W'+z+','+(D.scarpe.jeans[s][z]||0)+',75'); });
     });
     ['finite','grezze'].forEach(function(s) {
-      D.scarpe.camicia.sz.forEach(function(z) { l.push('Camicia,Bianca,'+s+','+z+','+(D.scarpe.camicia[s][z]||0)+',60'); });
+      D.scarpe.camicia.sz.forEach(function(z) { l.push('Camicia,Bianca,'+s+','+z+','+(D.scarpe.camicia[s][z]||0)+',50'); });
     });
     D.ling.forEach(function(x) { l.push('Linguette,'+x.name+',stock,—,'+x.stock+','+x.price); });
     D.acc.forEach(function(x) { l.push('Accessori,'+x.name+',stock,—,'+x.stock+','+x.price); });
-    l.push('');
-    l.push('NOTE');
+    l.push(''); l.push('NOTE');
     Object.keys(notes).forEach(function(t) {
       if (notes[t]) {
         var clean = notes[t].replace(/"/g,'""').replace(/\n/g,' | ');
@@ -1165,9 +1324,9 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     pLog('add', uname+': Export CSV');
   };
   window.rstAll = function() {
-    if(!confirm('Resettare ai valori originali? (le note saranno mantenute)')) return;
+    if(!confirm('Resettare ai valori originali?\n\n⚠️ I prodotti personalizzati saranno eliminati.\n📝 Le note saranno mantenute.')) return;
     D=JSON.parse(JSON.stringify(DEF)); syncIn(); recalc(); renderAcc(); pushFB(); saveLoc();
-    toast('ok','🔄 Reset'); pLog('remove', uname+': Reset');
+    toast('ok','🔄 Reset'); pLog('remove', uname+': Reset completo');
   };
 
   document.getElementById('fs').addEventListener('click', function() {
