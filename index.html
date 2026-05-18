@@ -308,7 +308,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   </div>
 </div>
 
-<!-- ⭐ MODAL CATEGORIA (per nuovo prodotto principale con tab dedicata) -->
+<!-- ⭐ MODAL CATEGORIA -->
 <div id="catModal">
   <div class="pm-box lg">
     <div class="pm-h">
@@ -346,7 +346,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   </div>
 </div>
 
-<!-- ⭐ MODAL PREZZO (per cambio rapido prezzo) -->
+<!-- ⭐ MODAL PREZZO -->
 <div id="priceModal">
   <div class="pm-box" style="max-width:380px">
     <div class="pm-h">
@@ -366,7 +366,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 </div>
 
 <div class="mn">
-<!-- ══════ TAB: CATALOGO ══════ -->
 <div class="tc a" id="tab-cat">
   <div class="kr" id="kpiRow"></div>
   <div class="als" id="alC"></div>
@@ -391,10 +390,8 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   </div>
 </div>
 
-<!-- ⭐ Container per tab dinamiche delle categorie -->
 <div id="tabsContainer"></div>
 
-<!-- ══════ TAB: ACCESSORI ══════ -->
 <div class="tc" id="tab-acc">
   <div class="note-box">
     <div class="nbh"><h3>📝 Note — Accessori</h3><span class="nb-status" id="nb-acc-st"></span></div>
@@ -405,7 +402,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   <div class="stit">🎩 Cinture & Cravatte</div><div class="ag" id="acT"></div>
 </div>
 
-<!-- ══════ TAB: GESTIONE ══════ -->
 <div class="tc" id="tab-gest">
   <div class="stit">⚙️ Gestione</div>
   <div class="note-box">
@@ -447,7 +443,42 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 <script>
 (function() {
   'use strict';
-  firebase.initializeApp({apiKey:"AIzaSyAFJlhIHnB5kNBowqcLSy5slRf5G8Cd_4k",authDomain:"magazzino-crepp.firebaseapp.com",databaseURL:"https://magazzino-crepp-default-rtdb.europe-west1.firebasedatabase.app",projectId:"magazzino-crepp",storageBucket:"magazzino-crepp.firebasestorage.app"});
+
+  /* ═══════════════════════════════════════════════════════════════════
+   *  🔴🔴🔴  INIZIO CONFIG FIREBASE — MODIFICA QUI  🔴🔴🔴
+   * ═══════════════════════════════════════════════════════════════════
+   *
+   *  ISTRUZIONI:
+   *  Sostituisci i 5 valori qui sotto con quelli del TUO nuovo progetto Firebase.
+   *  Li trovi nella console Firebase → ⚙️ Impostazioni progetto →
+   *  → Le tue app → blocco "firebaseConfig"
+   *
+   *  ⚠️  Mantieni le virgolette "..." attorno a ogni valore
+   *  ⚠️  Mantieni le virgole tra una riga e l'altra
+   *  ⚠️  NON cancellare le parentesi { } e ;
+   *
+   * ═══════════════════════════════════════════════════════════════════ */
+
+  firebase.initializeApp({
+apiKey: "AIzaSyCi2tYlBygFrGiLW5yeTGKbZsVPnXE-_0k",
+
+  authDomain: "magazzino-crep-v2.firebaseapp.com",
+
+  databaseURL: "https://magazzino-crep-v2-default-rtdb.europe-west1.firebasedatabase.app",
+
+  projectId: "magazzino-crep-v2",
+
+  storageBucket: "magazzino-crep-v2.firebasestorage.app",
+
+  messagingSenderId: "963992347259",
+
+  appId: "1:963992347259:web:bbde9100f0a88fa9f678de"
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════
+   *  🟢🟢🟢  FINE CONFIG FIREBASE — NON TOCCARE NULLA QUI SOTTO  🟢🟢🟢
+   * ═══════════════════════════════════════════════════════════════════ */
+
   var db = firebase.database();
   var DEFAULT_PWD = 'crepcoer2024';
 
@@ -487,8 +518,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   var uname='Utente '+uid.substr(2,3).toUpperCase();
   var ucol=['#E74C3C','#3498DB','#2ECC71','#9B59B6','#F39C12','#1ABC9C','#E67E22','#E91E63'][Math.floor(Math.random()*8)];
 
-  // ⭐ DEFAULT — categories ora è array per supportare aggiunte dinamiche
-  // Le 4 originali sono "core" (non eliminabili), le aggiunte sono "custom"
   var DEF = {
     categories: [
       {id:'uomo',    name:'Mocassino Biacco Uomo',  emoji:'👞', price:180, sz:[40,41,42,43,44,45], prefix:'', img:'img/mocassino-uomo', core:true, finite:{40:0,41:0,42:0,43:0,44:0,45:0}, grezze:{40:21,41:23,42:21,43:12,44:11,45:10}, color:'#D4AF7D'},
@@ -514,7 +543,7 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   var EMOJI_OPTIONS = ['🔗','💎','🪙','⚜️','⚫','⚪','🌸','🌺','🌼','💠','🔶','🔷','✨','⭐','🎀','🎩','👔','👞','👠','👗','👖','👕','🧥','🧢','🧦','💍','🔱','♠️','♥️','🏆','🌹','💐','🍀','🌟','💫','🔆','🟢','🟡','🔴','🟣','🟠','📦','🎽','👘','🥋','👜','🎒','👝','💼'];
 
   var D = JSON.parse(JSON.stringify(DEF)), logs = [];
-  var notes = { cat:'', acc:'', gest:'' }; // dynamic notes added per category
+  var notes = { cat:'', acc:'', gest:'' };
   var notesMeta = {};
   var noteSaveTimer = {};
   var noteIsRemoteUpdate = {};
@@ -593,16 +622,13 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       var r=s.val();
       if(r){
         if(r.categories && Array.isArray(r.categories)){
-          // Riconcilia categorie core + custom
           var merged = [];
           DEF.categories.forEach(function(defCat){
             var remoteCat = r.categories.find(function(c){return c.id===defCat.id});
             merged.push(mergeCategoryData(remoteCat, defCat));
           });
-          // Aggiungi le custom
           r.categories.forEach(function(rc){
             if(rc && !DEF.categories.some(function(d){return d.id===rc.id})){
-              // Nuova custom: assicura struttura completa
               if(!rc.finite) rc.finite={};
               if(!rc.grezze) rc.grezze={};
               if(!rc.sz) rc.sz=[];
@@ -629,7 +655,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   function listenNotes(){
     db.ref('notes').on('value', function(s){
       var r=s.val()||{};
-      // Aggiorna keys dinamicamente in base alle categorie
       Object.keys(r).forEach(function(tab){
         if(notes[tab]===undefined) notes[tab]='';
         var entry=r[tab];
@@ -658,11 +683,9 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   }
 
   function rebuildNotes(){
-    // Inizializza note per tutte le categorie
     D.categories.forEach(function(cat){
       if(notes[cat.id]===undefined) notes[cat.id]='';
     });
-    // Setup listeners su tutte le textarea note
     document.querySelectorAll('textarea[data-tab]').forEach(function(ta){
       var tab=ta.dataset.tab;
       if(notes[tab]===undefined) notes[tab]='';
@@ -755,7 +778,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
 
   function toast(t,m){var e=document.getElementById('tst');e.className='tst '+t+' sh';e.textContent=m;setTimeout(function(){e.classList.remove('sh')},2200)}
 
-  // ⭐ COSTRUISCE TUTTA L'UI DINAMICAMENTE
   function buildAllUI(){
     buildNav();
     buildKPIRow();
@@ -769,20 +791,16 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     var nav = document.getElementById('navBar');
     var activeId = document.querySelector('.tc.a') ? document.querySelector('.tc.a').id : 'tab-cat';
     nav.innerHTML = '';
-    // Catalogo
     addNavTab(nav, 'cat', '🛍️ Catalogo', activeId);
-    // Categorie (core + custom)
     D.categories.forEach(function(cat){
       addNavTab(nav, cat.id, cat.emoji+' '+shortName(cat.name), activeId);
     });
-    // Pulsante "+ Nuova"
     var addBtn = document.createElement('div');
     addBtn.className = 'nt nt-add';
     addBtn.textContent = '➕ Nuova';
     addBtn.onclick = function(){ openCatModal(); };
     addBtn.title = 'Aggiungi nuova categoria con tab dedicata';
     nav.appendChild(addBtn);
-    // Accessori e Gestione
     addNavTab(nav, 'acc', '🎩 Accessori', activeId);
     addNavTab(nav, 'gest', '⚙️ Gestione', activeId);
   }
@@ -798,15 +816,12 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   function buildKPIRow(){
     var kr = document.getElementById('kpiRow');
     kr.innerHTML = '';
-    // Totale
     kr.innerHTML += '<div class="kc bl"><div class="kl">Totale Articoli</div><div class="kv" id="k-tot">0</div><div class="ks">In magazzino</div></div>';
-    // Una card per categoria
     var classes = ['gd','pr','bj','cm','cs','tl','rd','gn'];
     D.categories.forEach(function(cat, i){
       var cls = classes[i % classes.length];
       kr.innerHTML += '<div class="kc '+cls+'"><div class="kl">'+escapeHtml(shortName(cat.name))+'</div><div class="kv" id="k-cat-'+cat.id+'">0</div><div class="ks">'+cat.emoji+' €'+cat.price+' <button class="pr-edit" onclick="editCategoryPrice(\''+cat.id+'\')" title="Modifica prezzo">✏️</button></div></div>';
     });
-    // Finite, Grezze, Valore
     kr.innerHTML += '<div class="kc gn"><div class="kl">Finite</div><div class="kv" id="k-fn">0</div><div class="ks">Pronte vendita</div></div>';
     kr.innerHTML += '<div class="kc rd"><div class="kl">Grezze</div><div class="kv" id="k-gz">0</div><div class="ks">Da lavorare</div></div>';
     kr.innerHTML += '<div class="kc tl"><div class="kl">Valore</div><div class="kv" id="k-vl">—</div><div class="ks">Prezzo vendita</div></div>';
@@ -815,7 +830,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   function buildCatalogProducts(){
     var c = document.getElementById('catalogProducts');
     c.innerHTML = '';
-    // Per ogni categoria, una sezione con titolo + grid prodotti
     D.categories.forEach(function(cat){
       var section = document.createElement('div');
       section.innerHTML = '<div class="stit">'+cat.emoji+' '+escapeHtml(cat.name)+' <span class="bdg cl" onclick="editCategoryPrice(\''+cat.id+'\')" title="Modifica prezzo">€'+cat.price+',00 ✏️</span></div>';
@@ -825,7 +839,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       section.appendChild(grid);
       c.appendChild(section);
     });
-    // Card "+ Aggiungi nuova categoria"
     var addSection = document.createElement('div');
     addSection.innerHTML = '<div class="stit">➕ Crea Nuovo Prodotto</div>';
     var addGrid = document.createElement('div');
@@ -897,7 +910,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
         '</div>';
       ctn.appendChild(tab);
     });
-    // Bind input events on all .ed
     document.querySelectorAll('.ed').forEach(function(i){
       if(!i.dataset.bound){i.dataset.bound='1';i.addEventListener('change', onEd)}
     });
@@ -938,7 +950,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     if(target) target.classList.add('a');
     if(el) el.classList.add('a');
     else{
-      // Trova il pulsante nav corrispondente
       document.querySelectorAll('.nt').forEach(function(n){if(n.textContent.indexOf(t)>-1)n.classList.add('a')});
     }
   };
@@ -1051,7 +1062,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
   };
 
   function setupModals(){
-    // Picker emoji per prodotto accessorio
     var pp = document.getElementById('pm-emoji-pick');
     if(pp.children.length===0){
       EMOJI_OPTIONS.forEach(function(em){
@@ -1065,7 +1075,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     document.getElementById('pm-group').addEventListener('change',updateModalPreview);
     document.getElementById('prodModal').addEventListener('click',function(e){if(e.target.id==='prodModal')closeProdModal()});
 
-    // Picker emoji per categoria
     var cp = document.getElementById('cm-emoji-pick');
     if(cp.children.length===0){
       EMOJI_OPTIONS.forEach(function(em){
@@ -1103,7 +1112,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     document.getElementById('cm-prev-icon').textContent=catModalState.selectedEmoji;
   }
 
-  // ⭐ MODAL PRODOTTO ACCESSORIO
   window.openProdModal = function(group, editIdx){
     modalState.mode = (editIdx!=null && editIdx>=0) ? 'edit' : 'add';
     modalState.group = group;
@@ -1164,7 +1172,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     toast('ok','🗑️ Eliminato'); pLog('remove',uname+': Eliminato "'+item.name+'"');
   };
 
-  // ⭐ MODAL CATEGORIA (nuovo prodotto principale con tab)
   window.openCatModal = function(editId){
     catModalState.mode = editId ? 'edit' : 'add';
     catModalState.editId = editId || null;
@@ -1223,11 +1230,9 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     if(catModalState.mode==='edit' && catModalState.editId){
       var cat = D.categories.find(function(c){return c.id===catModalState.editId});
       if(!cat){err.textContent='❌ Categoria non trovata';return}
-      // Per categorie core: solo prezzo, emoji, img. Per custom: tutto
       cat.price=price; cat.emoji=catModalState.selectedEmoji; cat.img=img;
       if(!cat.core){
         cat.name=name; cat.prefix=prefix;
-        // Aggiorna taglie: mantieni valori esistenti se la taglia esisteva
         var newFinite={}, newGrezze={};
         sizes.forEach(function(s){
           newFinite[s] = (cat.finite[s]!=null) ? cat.finite[s] : 0;
@@ -1237,7 +1242,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
       }
       pLog('save', uname+': Modificata categoria "'+cat.name+'"'); toast('ok','✅ Categoria aggiornata');
     } else {
-      // Verifica unicità nome
       var slug = name.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
       if(!slug) slug='cat_'+Date.now();
       if(D.categories.some(function(c){return c.id===slug})) slug = slug+'_'+Date.now().toString(36).substr(-4);
@@ -1261,7 +1265,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     D.categories = D.categories.filter(function(c){return c.id!==id});
     if(!isLocal) db.ref('notes/'+id).remove();
     delete notes[id]; delete notesMeta[id];
-    // Se ero su quella tab, vai al catalogo
     if(document.getElementById('tab-'+id) && document.getElementById('tab-'+id).classList.contains('a')){
       stab('cat');
     }
@@ -1274,7 +1277,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     confirmDeleteCategory(catModalState.editId);
   };
 
-  // ⭐ MODAL CAMBIO PREZZO RAPIDO
   window.editCategoryPrice = function(id){
     var cat = D.categories.find(function(c){return c.id===id});
     if(!cat)return;
@@ -1313,7 +1315,6 @@ table.iv .tr td{border-top:2px solid var(--gold);font-size:13px;font-weight:700}
     var av=cat.grezze[sz]||0;
     if(qty>av){fb.innerHTML='<span style="color:#E74C3C">❌ Solo '+av+' grezze disponibili</span>';return}
     cat.grezze[sz]-=qty; cat.finite[sz]=(cat.finite[sz]||0)+qty;
-    // Refresh inputs nella tab
     document.querySelectorAll('.ed').forEach(function(i){
       if(i.dataset.c===catId && i.dataset.z===sz){i.value=cat[i.dataset.s][sz]||0}
     });
